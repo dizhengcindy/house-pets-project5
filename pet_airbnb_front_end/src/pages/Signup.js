@@ -20,6 +20,7 @@ class Signup extends Component {
       event.preventDefault();
       this.props.onAddUser(this.state);
       this.setState(INITIAL_STATE);
+      this.props.history.push('/')
     };
   
     handleChange = (event) => {
@@ -64,7 +65,7 @@ class Signup extends Component {
             </label>
 
             <input
-              type="text"
+              type="password"
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
@@ -77,7 +78,7 @@ class Signup extends Component {
             </label>
 
             <input
-              type="text"
+              type="password"
               name="password_confirmation"
               value={this.state.password_confirmation}
               onChange={this.handleChange}

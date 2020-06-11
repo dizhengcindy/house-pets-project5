@@ -1,5 +1,5 @@
 import Geocode from "react-geocode";
-import React, { Component, useEffect,useState } from 'react'
+import React, { useEffect,useState } from 'react'
 import { connect } from 'react-redux'
 import GoogleMaps from './GoogleMaps'
 
@@ -16,8 +16,9 @@ Geocode.setRegion("us");
 // Enable or disable logs. Its optional.
 Geocode.enableDebug();
  
+// class LatLng extends Component{
 const LatLng = ({companies})=>{
-// {id: , name: , lat: , lng: }
+
   const [address,setAddress] = useState([])
 
   const getLatLng = () => {
@@ -62,3 +63,6 @@ const mapStateToProps = (state) => {
   }
 }
 export default connect(mapStateToProps)(LatLng);
+
+
+

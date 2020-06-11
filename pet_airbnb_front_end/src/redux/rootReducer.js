@@ -8,7 +8,8 @@ const rootReducer = combineReducers({
     user: userReducer,
     schedule: scheduleReducer,
     company:companyReducer,
-    service:serviceReducer
+    service:serviceReducer,
+
 })
 
 export default rootReducer

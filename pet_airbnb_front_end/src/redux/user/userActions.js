@@ -3,6 +3,7 @@ import {
     FETCH_USERS_SUCCESS,
     FETCH_USERS_FAILURE,
     POST_USER,
+    PATCH_USER,
     AUTH_USER,
     DELETE_USER,
   } from "./userTypes";

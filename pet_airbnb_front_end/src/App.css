@@ -53,3 +53,25 @@
 .Map {
 margin-left: 700px;
 }
+.CompanyShowPage .image img{
+  width: 400px;
+  height: 400px;
+  /* margin-right: 20px;
+  margin-left: 5px;
+  margin-top: 5px; */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}

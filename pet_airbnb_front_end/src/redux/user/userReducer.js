@@ -8,6 +8,8 @@ import {
   
   const initialState = {
     data: [],
+    //  userId:localStorage.getItem("user_id"),
+    
     loading: false,
   };
   
@@ -15,10 +17,12 @@ import {
     switch (action.type) {
       case POST_USER:
         // console.log("POST_USER")
+        localStorage.setItem("user_id", action.payload.user.id)
         return {
           ...state,
           loading: false,
-          data: [...state.data, action.payload],
+          data:  action.payload,
+
         };
         case AUTH_USER:
           // console.log("POST_USER")

@@ -1,6 +1,8 @@
 class SchedulesController < ApplicationController
     def create
+        byebug
         schedule = Schedule.new(schedule_params)
+        byebug
         if schedule.save
             render json: schedule
         else
@@ -29,7 +31,6 @@ class SchedulesController < ApplicationController
 
     private
     def schedule_params
-        params.require(:schedule).permit(:user_id,:companyservice_id,:num_of_pets,:start_date,:start_time,:end_date,
-        :end_time, :rating, :comment)
+        params.require(:schedule).permit(:user_id,:companyservice_id,:num_of_pets,:start_date,:start_time,:end_date, :end_time, :rating, :comment)
     end
 end

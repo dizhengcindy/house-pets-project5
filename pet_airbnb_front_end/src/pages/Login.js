@@ -17,6 +17,7 @@ class Login extends Component {
       event.preventDefault();
       this.props.onAddUser(this.state);
       this.setState(INITIAL_STATE);
+      this.props.history.push('/')
     };
   
     handleChange = (event) => {
@@ -48,7 +49,7 @@ class Login extends Component {
             </label>
 
             <input
-              type="text"
+              type="password"
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
@@ -61,6 +62,12 @@ class Login extends Component {
             </button>
           </div>
         </form>
+        <div className="toggle button">
+                   
+                    <button type="submit" onClick={() => this.props.history.push("/signup")}>
+                        Sign Up
+                    </button>
+                </div>
             </div>
         )
     }

@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+
 
 const CompanyCard=(props)=>{
 
@@ -8,7 +10,6 @@ const CompanyCard=(props)=>{
             {service.service} ${service.charge}
         </li>
    )
-
     const {id,company_name,adddress_line,city,state,country,zip,picture1,picture2,picture3,services}= props.company
     return (
         <div className="CompanyCard">
@@ -16,7 +17,8 @@ const CompanyCard=(props)=>{
             <img src={picture1} />
             </div>
             <div className="TextContent">
-                <Link to={`/companies/${id}`}>
+                <Link to={`/companies/${id}` }>
+
                     <div className="name">
                         <strong>{company_name}</strong>
                     </div>
