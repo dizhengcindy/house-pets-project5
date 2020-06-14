@@ -6,8 +6,8 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def update
-      @user = User.find_by(username: user_params[:username])
-     
+      # @user = User.find_by(username: user_params[:username])
+      @user = User.find(params[:id])
       if  @user.update(username: user_params[:username],email: user_params[:email])
         render json:{ user: UserSerializer.new(@user) }, status: :accepted
       else

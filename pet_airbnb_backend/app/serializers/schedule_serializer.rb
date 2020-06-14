@@ -1,4 +1,4 @@
 class ScheduleSerializer < ActiveModel::Serializer
   attributes :id,:num_of_pets,:start_date,:start_time,:end_date,
-  :end_time, :rating, :comment, :companyservice, :user
+  :end_time, :rating, :comment, :done,:companyservice, :user
 end

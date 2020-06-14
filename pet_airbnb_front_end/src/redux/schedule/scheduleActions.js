@@ -3,8 +3,8 @@ import {
     FETCH_SCHEDULES_SUCCESS,
     FETCH_SCHEDULES_FAILURE,
     POST_SCHEDULE,
-    PATCH_SCHEDULE,
-    DELETE_SCHEDULE,
+    UPDATE_SCHEDULE,
+    CANCEL_SCHEDULE,
   } from "./scheduleTypes";
   
   const SCHEDULEBASEURL = "http://localhost:3000/schedules"
@@ -35,11 +35,32 @@ import {
       payload: newSchedule,
     };
   };
-    
-  export const fetchSchedules = () => {
+  export const updateScheduleSuccess = (newSchedule) => {
+    return {
+      type: UPDATE_SCHEDULE,
+      payload: newSchedule,
+    };
+  };
+  export const cancelScheduleSuccess = (id) => {
+    return {
+      type:CANCEL_SCHEDULE,
+      payload: id,
+    };
+  };
+  export const cancelSchedule = (id) => {
+    console.log(id)
+    return (dispatch) => {
+      dispatch(fetchScheduleRequest())
+      fetch(`${SCHEDULEBASEURL}/${id}`, {
+        method: "DELETE",
+      })
+      dispatch(cancelScheduleSuccess(id));//different
+    };}
+
+  export const fetchSchedules = (userId) => {
     return (dispatch) => {
       dispatch(fetchScheduleRequest());
-      fetch(SCHEDULEBASEURL)
+      fetch(`${SCHEDULEBASEURL}/thisUser/${userId}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.error) {
@@ -63,8 +84,6 @@ import {
         },
         body: JSON.stringify(
             newSchedule
-            
-          
         ),
       })
         .then((res) => res.json())
@@ -77,4 +96,27 @@ import {
         });
     };}
 
-   
+    export const updateSchedule = (id,updateInfo) => {
+      console.log(updateInfo)
+      return (dispatch) => {
+        dispatch(fetchScheduleRequest())
+        fetch(`${SCHEDULEBASEURL}/${id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify(
+            updateInfo
+          ),
+        })
+          .then((res) => res.json())
+          .then((schedule) => {
+            if (schedule.error) {
+              dispatch(fetchScheduleFailure(schedule.error));
+            } else {
+              dispatch(updateScheduleSuccess(schedule));//different
+            }
+          });
+      };}
+  

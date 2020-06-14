@@ -3,27 +3,32 @@ import {
     FETCH_USERS_SUCCESS,
     POST_USER,
     AUTH_USER,
+    UPDATE_USER,
     DELETE_USER,
   } from "./userTypes";
   
   const initialState = {
     data: [],
     //  userId:localStorage.getItem("user_id"),
-    
     loading: false,
   };
   
   const userReducer = (state = initialState, action) => {
     switch (action.type) {
       case POST_USER:
-        // console.log("POST_USER")
-        localStorage.setItem("user_id", action.payload.user.id)
         return {
           ...state,
           loading: false,
           data:  action.payload,
 
         };
+        case UPDATE_USER:
+          return {
+            ...state,
+            loading: false,
+            data:  action.payload,
+  
+          };
         case AUTH_USER:
           // console.log("POST_USER")
           return {

@@ -1,8 +1,11 @@
 class SchedulesController < ApplicationController
+    def index
+        schedules = Schedule.where("user_id=?", params[:user_id])
+        render json: schedules
+    end
+
     def create
-        byebug
         schedule = Schedule.new(schedule_params)
-        byebug
         if schedule.save
             render json: schedule
         else
@@ -11,17 +14,12 @@ class SchedulesController < ApplicationController
     end
 
     def update
-        schedule = Schedule.find(param[:id])
-        if Schedule.update(schedule_params)
+        schedule = Schedule.find(params[:id])
+        if schedule.update(schedule_params)
             render json: schedule
         else
             render json: {error: "failed to make a schedule"}
         end
-    end
-
-    def index
-        schedules = Schedule.all
-        render json: schedules
     end
 
     def destroy
@@ -31,6 +29,6 @@ class SchedulesController < ApplicationController
 
     private
     def schedule_params
-        params.require(:schedule).permit(:user_id,:companyservice_id,:num_of_pets,:start_date,:start_time,:end_date, :end_time, :rating, :comment)
+        params.require(:schedule).permit(:user_id,:companyservice_id,:num_of_pets,:start_date,:start_time,:end_date, :end_time, :rating, :comment,:done)
     end
 end

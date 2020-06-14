@@ -10,6 +10,7 @@ class CreateSchedules < ActiveRecord::Migration[6.0]
       t.time :end_time
       t.float :rating
       t.string :comment
+      t.boolean :done
 
       t.timestamps
     end
