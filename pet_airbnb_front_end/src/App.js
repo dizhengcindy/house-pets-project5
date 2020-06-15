@@ -5,6 +5,7 @@ import {store,persistor} from "./redux/store";
 import { Provider } from "react-redux";
 import {fetchCompanies} from "./redux"
 import {fetchServices} from './redux'
+import {fetchAllSchedules} from './redux'
 import Login from './pages/Login.js'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
@@ -19,8 +20,11 @@ import { PersistGate } from 'redux-persist/integration/react'
 class App extends Component {
 
 componentDidMount() {
+  fetchAllSchedules()(store.dispatch)
   fetchCompanies()(store.dispatch)
   fetchServices()(store.dispatch)
+  
+
 }
 
   render() {

@@ -1,9 +1,14 @@
 class SchedulesController < ApplicationController
-    def index
+    def userSchedules
         schedules = Schedule.where("user_id=?", params[:user_id])
         render json: schedules
     end
 
+    def index
+        schedules = Schedule.all
+        render json: schedules
+    end
+    
     def create
         schedule = Schedule.new(schedule_params)
         if schedule.save

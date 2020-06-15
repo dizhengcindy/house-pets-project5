@@ -3,17 +3,12 @@ import{
     FETCH_COMPANIES_SUCCESS,
     FETCH_COMPANIES_FAILURE,
     FILTER_COMPANIES,
-    SET_COMPANY_ID,
+
   } from "./companyTypes";
   
   const BASEURL = "http://localhost:3000/companies"
 
-  export const setCompanyId = id=>{
-    return {
-      type: SET_COMPANY_ID,
-      payload: id,
-    };
-  }
+
   export const filterCompanies = (obj={})=> {
     return {
       type: FILTER_COMPANIES,

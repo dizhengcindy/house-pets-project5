@@ -3,13 +3,11 @@
     FETCH_COMPANIES_REQUEST,
     FETCH_COMPANIES_SUCCESS,
     FILTER_COMPANIES,
-    SET_COMPANY_ID,
   } from "./companyTypes";
 
   const initialState = {
     data:[],
     display:[],
-    currentCompId:0,
     loading: false,
   };
   
@@ -45,11 +43,6 @@
           ...state,
           display:showComps
 
-        }
-      case SET_COMPANY_ID:
-        return{
-          ...state,
-          currentCompId:action.payload
         }
       default:
         return state;

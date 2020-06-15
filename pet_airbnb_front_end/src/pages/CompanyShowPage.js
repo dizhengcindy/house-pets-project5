@@ -1,26 +1,12 @@
-import React, { useState,useEffect } from 'react'
+import React,{useEffect} from 'react'
 import { connect } from 'react-redux'
-import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";      
-import { postSchedule, setCompanyId } from '../redux';
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
-
+import CommentCard from '../components/company/CommentCard.js'
+import ScheduleForm from '../components/schedule/ScheduleForm.js'
   const CompanyShowPage =(props)=> {
 
-    const [companyserviceId, setCompanyserviceId]=useState()
-    const [numOfPets, setNumOfPets]=useState(1)
-    const [startDate, setStartDate]=useState( setHours(setMinutes(new Date(), 30), 7))
-    const [endDate, setEndDate]=useState(setHours(setMinutes(new Date(), 30), 7))
-    const [rating,setRating] = useState(3)
-    const [comment,setComment] = useState("")  
-     
     const getCompany=()=>{
-        //  props.fetchCompanies()
         let id= props.match.params.id
-        // props.addCompanyId(id)
-        
-        // console.log(id,props,id)
         let found = props.companies.find(comp=>comp.id==id)
         // if( found ===undefined){
         //     return null
@@ -29,37 +15,25 @@ import setMinutes from "date-fns/setMinutes";
         // }
     }
 
-   const populateServices=(services)=> services.map((ser,index)=><option key={index} id={ser.id}>{ser.service + " $ " + ser.charge} </option>)
-    
-   const handelChangeService=(event)=>{
-       const{services} = getCompany()
-       let service =  event.target.value.split(" $ ")[0]
-       let id = services.find(ser=>ser.service===service).id
-       
-       setCompanyserviceId(id)
-       
-    }
+    const populateComments=()=>{
 
-   const handleClick=()=>{
-    //    let a =startDate
-        props.addSchedule({
-        user_id: props.user.id,
-        companyservice_id:companyserviceId,
-        num_of_pets:numOfPets,
-        start_date:startDate,
-        start_time:startDate.getHours()+ ":" +startDate.getMinutes(),
-        end_date:endDate,
-        end_time:endDate.getHours()+ ":" +endDate.getMinutes()
-        // rating:rating,
-        // comment:comment
-    })
+       let compSchedules = props.allSchedules.filter(sche=>sche.companyservice.company_id === getCompany().id)
+  
+       return compSchedules.map((schedule,index)=>{
+        if(schedule.comment||schedule.rating){
+            return <CommentCard key={index} schedule={schedule}/>
+        }
+
+      })
     }
    
-    //   if(getCompany()==null){
+        //   if(getCompany()==null){
         //   return <h1>loading...</h1>
     //   }else{
-        const { company_name,adddress_line,city,state,zip,services,picture1,picture2,picture3} =  getCompany()
-       return (
+    const { company_name,adddress_line,city,state,zip,services,picture1,picture2,picture3} =  getCompany()
+       
+    const getScheduleForm = ()=><ScheduleForm services={services} company = {getCompany()}/>
+        return (
 
             <div className="CompanyShowPage">
                  <div className="CompanyName">
@@ -79,43 +53,17 @@ import setMinutes from "date-fns/setMinutes";
                      <img src= {picture3}/></div>
                      </div>
                  </div>
-                 <div>
-                 <label>Service:</label>
-                  <select id="service" onChange={handelChangeService}>
-                      <option>Choose a service...</option>
-                     {populateServices(services)}
-                 </select>
-                 <div className="NumOfPet">
-                     <label>Number of pets</label>
-                     <input type="number" min="0" step="1" value={numOfPets} onChange={(event)=>setNumOfPets(event.target.value)}/>
-                 </div>
-                Start Date and Time:
-                <DatePicker
-                    selected={startDate}
-                    onChange={date => setStartDate(date)}
-                    selectsStart
-                    showTimeSelect
-                    minTime={setHours(setMinutes(new Date(), 0), 7)}
-                    maxTime={setHours(setMinutes(new Date(), 30), 20)}
-                    dateFormat="MMMM d, yyyy h:mm aa"
-                    startDate={startDate}
-                    endDate={endDate}
-                />
-                End Date and Time:
-                <DatePicker
-                    selected={endDate}
-                    onChange={date => setEndDate(date)}
-                    showTimeSelect
-                    selectsEnd
-                    minTime={setHours(setMinutes(new Date(), 0), 7)}
-                    maxTime={setHours(setMinutes(new Date(), 30), 20)}
-                    dateFormat="MMMM d, yyyy h:mm aa"
-                    startDate={startDate}
-                    endDate={endDate}
-                    minDate={startDate}
-                />
-                <br/>
-                <button onClick={handleClick}>Reserve service</button>
+                {props.user?
+                 getScheduleForm()
+                 :""
+                 }
+                 
+                <div className="Comments">
+                Rating:
+                <p></p>
+                Comments:
+                {populateComments()}
+                
                 </div>
             </div>
         )}
@@ -124,13 +72,10 @@ import setMinutes from "date-fns/setMinutes";
 const mapStateToProps = (state) => {
     return{
       companies:state.company.display,
-      user:state.user.data.user
+      schedules:state.schedule.data,
+      user:state.user.data.user,
+      allSchedules: state.allSchedules.data
     }
   }
-const mapDispatchToProps = dispatch=>{
-    return{
-        addSchedule: (data)=>postSchedule(data)(dispatch),
-        addCompanyId: (id)=>dispatch(setCompanyId(id))
-    }
-} 
-  export default connect(mapStateToProps,mapDispatchToProps)(CompanyShowPage);
+
+  export default connect(mapStateToProps)(CompanyShowPage);

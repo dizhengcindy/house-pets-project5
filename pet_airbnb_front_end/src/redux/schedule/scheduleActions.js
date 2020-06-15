@@ -60,7 +60,7 @@ import {
   export const fetchSchedules = (userId) => {
     return (dispatch) => {
       dispatch(fetchScheduleRequest());
-      fetch(`${SCHEDULEBASEURL}/thisUser/${userId}`)
+      fetch(`${SCHEDULEBASEURL}/userSchedules/${userId}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.error) {

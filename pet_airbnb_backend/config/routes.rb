@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :services
   resources :users
   
-  get '/schedules/thisUser/:user_id', to: 'schedules#index'
+  get '/schedules/userSchedules/:user_id', to: 'schedules#userSchedules'
   namespace :api do
     namespace :v1 do
       resources :users, only: [:create,:update,:destroy]
