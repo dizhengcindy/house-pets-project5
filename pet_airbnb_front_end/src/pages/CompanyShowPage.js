@@ -1,8 +1,10 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import "react-datepicker/dist/react-datepicker.css";      
 import CommentCard from '../components/company/CommentCard.js'
 import ScheduleForm from '../components/schedule/ScheduleForm.js'
+import {FaStar} from 'react-icons/fa'
+
   const CompanyShowPage =(props)=> {
 
     const getCompany=()=>{
@@ -15,6 +17,7 @@ import ScheduleForm from '../components/schedule/ScheduleForm.js'
         // }
     }
 
+
     const populateComments=()=>{
 
        let compSchedules = props.allSchedules.filter(sche=>sche.companyservice.company_id === getCompany().id)
@@ -26,21 +29,59 @@ import ScheduleForm from '../components/schedule/ScheduleForm.js'
 
       })
     }
+
+    const getEachSerRating = (id)=>{
+        let serCstHash = {}
+
+       let compSches =  props.allSchedules.filter(sch=>sch.companyservice.company_id == props.match.params.id)
+       compSches.map(sch=>{
+      
+        let k = "id" + sch.companyservice.id
+
+           if(!serCstHash[k]){
+            serCstHash[k]=[sch.rating]
+        }else{
+            serCstHash[k].push(sch.rating)
+        }
+             
+        })
+
+       for( let k in serCstHash){
+           if(k.slice(2)==id){
+            return serCstHash[k].reduce((a,b)=>a+b,0)/serCstHash[k].length + "("+ serCstHash[k].length +")"
+           }
+       }
+       
+    }
+
    
         //   if(getCompany()==null){
         //   return <h1>loading...</h1>
     //   }else{
-    const { company_name,adddress_line,city,state,zip,services,picture1,picture2,picture3} =  getCompany()
+    const { company_name,address_line,city,state,zip,services,picture1,picture2,picture3,description} =  getCompany()
        
+const listOfServices=()=>services.map((ser,index)=><li key = {index}>{ser.service}: $ {ser.charge} 
+
+{getEachSerRating(ser.companyservices_id)?
+            <>
+             <FaStar color={"#ffc107"}/> 
+             {getEachSerRating(ser.companyservices_id)}
+             </>
+             
+             :""}
+
+</li>)
+    
     const getScheduleForm = ()=><ScheduleForm services={services} company = {getCompany()}/>
         return (
-
+           
             <div className="CompanyShowPage">
                  <div className="CompanyName">
+               
                     <h1>{company_name}</h1>
                  </div>
                  <div className="Address">
-                    <p>{adddress_line+", "+city + ", " + state+" "+zip}</p>
+                    <p>{address_line+", "+city + ", " + state+" "+zip}</p>
                  </div>
                  <div className="image">
                  <div className="row">
@@ -52,6 +93,15 @@ import ScheduleForm from '../components/schedule/ScheduleForm.js'
                      <div className="column">
                      <img src= {picture3}/></div>
                      </div>
+                 </div>
+                 <div className = "Services">
+                     Services:
+                    <ul>
+                        {listOfServices()}
+                    </ul>
+                 </div>
+                 <div className="Description">
+                    Description: <p>{description}</p>
                  </div>
                 {props.user?
                  getScheduleForm()

@@ -11,7 +11,9 @@ class SchedulesController < ApplicationController
     
     def create
         schedule = Schedule.new(schedule_params)
+  
         if schedule.save
+            
             render json: schedule
         else
             render json: {error: "failed to make a schedule"}
@@ -21,6 +23,7 @@ class SchedulesController < ApplicationController
     def update
         schedule = Schedule.find(params[:id])
         if schedule.update(schedule_params)
+            
             render json: schedule
         else
             render json: {error: "failed to make a schedule"}
@@ -34,6 +37,6 @@ class SchedulesController < ApplicationController
 
     private
     def schedule_params
-        params.require(:schedule).permit(:user_id,:companyservice_id,:num_of_pets,:start_date,:start_time,:end_date, :end_time, :rating, :comment,:done)
+        params.require(:schedule).permit(:user_id,:companyservice_id,:num_of_pets,:start_date,:start_time,:end_date, :end_time, :rating, :comment,:done,:totalCost)
     end
 end

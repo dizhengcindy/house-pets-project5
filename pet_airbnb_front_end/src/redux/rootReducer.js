@@ -34,7 +34,7 @@ const rootReducer = (state, action) => {
         // state = undefined;
         const { company, service,allSchedules } = state;
 
-    state = { company, service,allSchedules };
+    state = { company, service,allSchedules};
     }
     
     return appReducer(state, action)

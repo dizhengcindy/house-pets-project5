@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState,useEffect} from 'react'
 import { connect } from 'react-redux'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";      
@@ -7,27 +7,45 @@ import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import { useAlert } from 'react-alert'
 
+
  const ScheduleForm=(props)=>{
 
     const alert = useAlert()
+    const [selectedService,setSelectedService] = useState("")
+    const [charge,setCharge] = useState(0)
     const [companyserviceId, setCompanyserviceId]=useState()
     const [numOfPets, setNumOfPets]=useState(1)
     const [startDate, setStartDate]=useState( setHours(setMinutes(new Date(), 30), 7))
     const [endDate, setEndDate]=useState(setHours(setMinutes(new Date(), 30), 7))
-
+    const [reserveBtn,setReserveBtn] = useState(true)
+    const [totalCharge, setTotalCharge] = useState(0)
    const populateServices=(services)=> services.map((ser,index)=><option key={index} id={ser.id}>{ser.service + " $ " + ser.charge} </option>)
     
    const handelChangeService=(event)=>{
        const{services} = props.company
        let service =  event.target.value.split(" $ ")[0]
-       let id = services.find(ser=>ser.service===service).id
-       
+       let charge = parseInt(event.target.value.split(" $ ")[1].slice(0,2))
+       let id = services.find(ser=>ser.service===service).companyservices_id
+       setReserveBtn(false)
+       setSelectedService(service)
+       setCharge(charge)
        setCompanyserviceId(id)
-       
     }
+const updateTotalCharge=()=>{
+    if(selectedService === "Walk dog"){
+        let halfHrs = ((endDate.getHours() +endDate.getMinutes()/60)-(startDate.getHours() +startDate.getMinutes()/60))*2
+        setTotalCharge( halfHrs * charge * numOfPets)
+        }else{
+            let days = (Math.floor((endDate.getTime() -startDate.getTime() )/ (1000 * 60 * 60 * 24)) + 1)
+            setTotalCharge (charge * numOfPets *days)
+        }
 
-   const handleClick=()=>{
-   
+}
+useEffect(updateTotalCharge,[selectedService,numOfPets,startDate,endDate])
+  
+const handleClick=()=>{
+
+    
         props.addSchedule({
         user_id: props.user.id,
         companyservice_id:companyserviceId,
@@ -35,9 +53,14 @@ import { useAlert } from 'react-alert'
         start_date:startDate,
         start_time:startDate.getHours()+ ":" +startDate.getMinutes(),
         end_date:endDate,
-        end_time:endDate.getHours()+ ":" +endDate.getMinutes()
+        end_time:endDate.getHours()+ ":" +endDate.getMinutes(),
+        totalCost: totalCharge
     })
+    
+   
     alert.success('You reserved the service successfully!')
+
+    
     }
     return (
         <div className = "ScheduleForm">
@@ -77,8 +100,10 @@ import { useAlert } from 'react-alert'
                     minDate={startDate}
                 />
                 <br/>
-                <button onClick={handleClick}>Reserve service</button>
-         
+                Total charge: {totalCharge}
+                <br/>
+                <button disabled={reserveBtn} onClick={handleClick}>Reserve service</button>
+               
         </div>
     )
 }

@@ -11,6 +11,7 @@ class CreateSchedules < ActiveRecord::Migration[6.0]
       t.float :rating
       t.string :comment
       t.boolean :done
+      t.float :totalCost
 
       t.timestamps
     end

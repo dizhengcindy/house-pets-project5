@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_005152) do
 
   create_table "companies", force: :cascade do |t|
     t.string "company_name"
-    t.string "adddress_line"
+    t.string "address_line"
     t.string "city"
     t.string "state"
     t.string "country"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_005152) do
     t.string "picture1"
     t.string "picture2"
     t.string "picture3"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -32,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_005152) do
   create_table "companyservices", force: :cascade do |t|
     t.bigint "company_id", null: false
     t.bigint "service_id", null: false
-    t.float "charge"
+    t.string "charge"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_companyservices_on_company_id"
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_005152) do
     t.float "rating"
     t.string "comment"
     t.boolean "done"
+    t.float "totalCost"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["companyservice_id"], name: "index_schedules_on_companyservice_id"

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import {FaStar} from 'react-icons/fa'
 
 const CommentCard=({schedule,services })=>{
 
@@ -13,7 +14,8 @@ const CommentCard=({schedule,services })=>{
             {findService().service_type}
             </div>
            {schedule.rating ?
-            <div>Rating: {schedule.rating}</div>:""}
+            <div>Rating: {[...Array(5)].map((star, i) =><FaStar key={i} className="star" color = {i< schedule.rating?"#ffc107":"#e4e5e9"} /> )}
+            </div>:""}
            
             {schedule.comment ?
             schedule.comment :""}

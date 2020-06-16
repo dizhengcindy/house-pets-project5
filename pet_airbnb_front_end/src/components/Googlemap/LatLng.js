@@ -24,7 +24,7 @@ const LatLng = ({companies})=>{
   const getLatLng = () => {
       companies.map((comp) => {
 
-        const address = comp.adddress_line + ", " + comp.city + ", " + comp.state
+        const address = comp.address_line + ", " + comp.city + ", " + comp.state
 
         Geocode.fromAddress(address).then(
           response => {

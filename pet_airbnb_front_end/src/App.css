@@ -75,3 +75,11 @@ margin-left: 700px;
   clear: both;
   display: table;
 }
+
+input[type="radio"]{
+  display:none;
+}
+.star{
+  cursor: pointer;
+  transition: color 200ms;
+}
