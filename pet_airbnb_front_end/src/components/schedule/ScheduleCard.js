@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from "react-router-dom";
 import{cancelSchedule,updateSchedule} from '../../redux'
 import {FaStar} from 'react-icons/fa'
+import Button from  'react-bootstrap/Button'
 
 const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule})=> {
 
@@ -56,7 +57,7 @@ return (
             <p>Comment: {schedule.comment}</p> 
             :""}
             {(schedule.rating==null && schedule.comment==null)? "":
-            <button onClick={handleDeleteComment}>Delete Review</button>}
+            <Button onClick={handleDeleteComment}>Delete Review</Button>}
 
            {!!schedule.done ?
             
@@ -98,15 +99,15 @@ return (
                 </>
                 :
                 <>
-                    {(schedule.rating==null && schedule.comment==null)? <button onClick={()=>{setCommentBox(!commentBox)}}>Review service</button>:""}
+                    {(schedule.rating==null && schedule.comment==null)? <Button onClick={()=>{setCommentBox(!commentBox)}}>Review service</Button>:""}
             
                 </>
                 }
            </>
            :
             <>
-                <button onClick={()=>{updateSchedule(schedule.id,{done:true})}}>Done</button>
-                <button onClick={()=>{cancelSchedule(schedule.id)}}>Cancel</button>
+                <Button onClick={()=>{updateSchedule(schedule.id,{done:true})}}>Done</Button>
+                <Button onClick={()=>{cancelSchedule(schedule.id)}}>Cancel</Button>
             </>}
             
         </div>

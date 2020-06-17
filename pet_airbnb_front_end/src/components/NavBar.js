@@ -14,15 +14,17 @@ class NavBar extends Component{
         // localStorage.removeItem("user_id")
         this.props.logout()
     }
-
+   
     render(){
+        let welcome = `Welcome, ${this.props.user.username} `
         return(
+            
             // <div className="navbar">
             <Container>
              {/* <div className="container"> */}
-            <Navbar collapseOnSelect expand="xl" bg="light" variant="light" fixed="top" >
+            <Navbar collapseOnSelect expand="md" bg="light" variant="light" fixed="top" >
 
-            <Nav className="mr-auto">
+            <Nav className="col-auto mr-auto">
                 <Nav.Item >
                 {/* <NavLink to="/" exact>Home</NavLink> */}
                     <Nav.Link eventKey="1" href="http://localhost:3001/">
@@ -35,13 +37,18 @@ class NavBar extends Component{
 
             <Nav>
                 {!!this.props.user ?
-                <NavDropdown title={<RiUserHeartLine size="25"/>} id="nav-dropdown" >
+      
+                
+                <NavDropdown className="col-auto" key ='left' title= {welcome}  id="nav-dropdown" >
                     <NavDropdown.Item eventKey="4.1" href="http://localhost:3001/user/profile">Profile</NavDropdown.Item>
                     <NavDropdown.Item eventKey="4.2" href="http://localhost:3001/schedules">Schedules</NavDropdown.Item>
                     {/* <NavDropdown.Item eventKey="4.3">Saved stores</NavDropdown.Item> */}
                     <NavDropdown.Divider />
                     <NavDropdown.Item eventKey="4.4" href="http://localhost:3001/" onClick={this.signOut}>Log out</NavDropdown.Item>
                 </NavDropdown>
+                
+            
+        
                 :
                 <Nav.Item>
                     <Nav.Link eventKey="4.5" href="http://localhost:3001/login">

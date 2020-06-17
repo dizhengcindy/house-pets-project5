@@ -11,7 +11,7 @@ import ReactDOMServer from 'react-dom/server'
     const renderMarkerContent=()=> {
         return ReactDOMServer.renderToString(<Link to={`/companies/${compId}` }>
                 
-        <p>{company_name}</p>
+    <p>{company_name}</p>
        
       </Link>)
     }

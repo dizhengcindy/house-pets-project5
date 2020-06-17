@@ -6,7 +6,9 @@ import { postSchedule } from '../../redux';
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import { useAlert } from 'react-alert'
-
+import Button from  'react-bootstrap/Button'
+import Card from "react-bootstrap/Card"
+import InputGroup from 'react-bootstrap/InputGroup'
 
  const ScheduleForm=(props)=>{
 
@@ -63,18 +65,18 @@ const handleClick=()=>{
     
     }
     return (
-        <div className = "ScheduleForm">
+        <div className = "Scheduleform">
            
-                 <label>Service:</label>
+                 <label>Service:</label><br/>
                   <select id="service" onChange={handelChangeService}>
                       <option>Choose a service...</option>
                      {populateServices(props.services)}
                  </select>
                  <div className="NumOfPet">
-                     <label>Number of pets</label>
+                     <label>Number of pets:</label><br/>
                      <input type="number" min="0" step="1" value={numOfPets} onChange={(event)=>setNumOfPets(event.target.value)}/>
                  </div>
-                Start Date and Time:
+                 <label> Start Date and Time: </label><br/>
                 <DatePicker
                     selected={startDate}
                     onChange={date => setStartDate(date)}
@@ -85,8 +87,8 @@ const handleClick=()=>{
                     dateFormat="MMMM d, yyyy h:mm aa"
                     startDate={startDate}
                     endDate={endDate}
-                />
-                End Date and Time:
+                /><br/>
+                <label>End Date and Time:</label> <br/>
                 <DatePicker
                     selected={endDate}
                     onChange={date => setEndDate(date)}
@@ -100,9 +102,12 @@ const handleClick=()=>{
                     minDate={startDate}
                 />
                 <br/>
-                Total charge: {totalCharge}
+                <label> Total charge: </label> 
+                <div>
+                {totalCharge}
+                </div>
                 <br/>
-                <button disabled={reserveBtn} onClick={handleClick}>Reserve service</button>
+                <Button disabled={reserveBtn} onClick={handleClick}>Reserve service</Button>
                
         </div>
     )

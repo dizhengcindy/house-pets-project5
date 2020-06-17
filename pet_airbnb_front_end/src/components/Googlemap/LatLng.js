@@ -50,20 +50,15 @@ const LatLng = ({companies,selectedState})=>{
         
       let choice = {}
 
-        // if(selectedState==="All"){
-        //   choice = {"lat":47.603230,"lng":-122.330276, "zoom":7}
-        //   // choice.zoom= 7
-        //   // choice.lat= 47.603230,
-        //   // choice.lng= -122.330276
-        // }
-        //  if(selectedState === "WA"){
-        //   choice = {"lat":47.603230,"lng":-122.330276, "zoom":11}
-        // }else if(selectedState==="OR"){
-        //   choice = {"lat":45.5051,"lng":-122.6750, "zoom":11}
-        // }
-        // else{
+      
+         if(selectedState === "WA"){
+          choice = {"lat":47.662410,"lng":-122.367150, "zoom":11}
+        }else if(selectedState==="OR"){
+          choice = {"lat":45.572720,"lng":-122.626570, "zoom":11}
+        }
+        else{
           choice = {"lat":46.603230,"lng":-121.330276, "zoom":7.2}
-        // }
+        }
 
         return choice
 

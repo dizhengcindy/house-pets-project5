@@ -4,6 +4,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import CommentCard from '../components/company/CommentCard.js'
 import ScheduleForm from '../components/schedule/ScheduleForm.js'
 import {FaStar} from 'react-icons/fa'
+import Card from "react-bootstrap/Card"
+import Container from 'react-bootstrap/Container'
 
   const CompanyShowPage =(props)=> {
 
@@ -74,7 +76,7 @@ const listOfServices=()=>services.map((ser,index)=><li key = {index}>{ser.servic
     
     const getScheduleForm = ()=><ScheduleForm services={services} company = {getCompany()}/>
         return (
-           
+           <Container>
             <div className="CompanyShowPage">
                  <div className="CompanyName">
                
@@ -95,27 +97,39 @@ const listOfServices=()=>services.map((ser,index)=><li key = {index}>{ser.servic
                      </div>
                  </div>
                  <div className = "Services">
-                     Services:
+                    <strong>Services:</strong> 
                     <ul>
                         {listOfServices()}
                     </ul>
                  </div>
                  <div className="Description">
-                    Description: <p>{description}</p>
+                   <strong> Description: </strong><p>{description}</p>
                  </div>
                 {props.user?
-                 getScheduleForm()
+                <div className="ScheduleForm"> 
+                <Card
+                    bg='light'
+                    text='dark' 
+                    style={{ width: '22rem' }}
+                     >
+                    <Card.Header>Schedule a service</Card.Header>
+                    <Card.Body>
+
+                                {getScheduleForm()}
+                           
+                    </Card.Body>
+                </Card>
+                </div> 
                  :""
                  }
                  
                 <div className="Comments">
-                Rating:
-                <p></p>
-                Comments:
+               <h5> <strong>Comments:</strong></h5>
                 {populateComments()}
                 
                 </div>
             </div>
+            </Container>
         )}
     // }
 

@@ -47,10 +47,15 @@ const CompanyCard=(props)=>{
             <div className="image">
             <img src={picture1} />
             </div>
-            <div >
+            <div className="TextContent">
             <div className="name">
-            <a href={`http://localhost:3001/companies/${id}`}> {company_name}</a>
-                    </div>
+                <Link to={`/companies/${id}` }>
+
+                   
+                        <strong>{company_name}</strong>
+                  
+                    </Link>
+                      </div>
                     <div className="address">
                        Address: {address_line+", " + city+ ", "+state+" "+ zip}
                     </div>

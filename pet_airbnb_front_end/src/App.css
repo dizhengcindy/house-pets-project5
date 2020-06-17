@@ -3,18 +3,27 @@
   height: auto;
   padding: 20px;
   /* margin-left: 230px; */
-  margin-left: 1000px;
+  /* margin-left: 950px; */
+  float: right;
  padding-bottom: 30px;
  overflow: auto; 
-z-index: 100;
+ width: 50%;
+/* z-index: 100; */
  }
  .CompanyCard {
    border: 1px solid rgb(224, 224, 224); 
   /* padding: 20px 40px 40px; */
-  max-width: 1000px;
+  max-width: 1100px;
   display: flex;
   margin-left: 0px;
   
+}
+.ScheduleForm{
+  display: flex;
+  /* margin-right: 300px; */
+  float: right;
+  /* position: fixed;
+  z-index: 100; */
 }
 .CompanyCard .image img{
   /* margin: 20px 30px 0 0; */
@@ -42,18 +51,22 @@ z-index: 100;
   margin-top: 15px;
   flex: 1 1 auto;
 }
-/* .Map {
-margin-left: 940px;
-} */
-/* .mapContainer{
-  position:sticky
-} */
+.Schedule,
+.CompanyShowPage{
+  margin-top: 17px;
+}
 .CompanyShowPage .image img{
-  width: 400px;
+  width: 100%;
+  /* 400px; */
   height: 400px;
   /* margin-right: 20px;
   margin-left: 5px;
   margin-top: 5px; */
+}
+.CommentCard .Service{
+  color:
+   /* lightskyblue */
+  cornflowerblue
 }
 
 * {
@@ -78,7 +91,10 @@ input[type="radio"]{
   cursor: pointer;
   transition: color 200ms;
 }
-
+.RiDeleteBinLine{
+  cursor: pointer;
+  transition: color 200ms;
+}
 .CompanyInfoBox .image img{
   width: 200px;
   height: 150px;

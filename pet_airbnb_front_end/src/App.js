@@ -13,7 +13,7 @@ import CompanyShowPage from './pages/CompanyShowPage'
 import NavBar from './components/NavBar.js'
 import UserProfile from './pages/UserProfile.js'
 import UserSchedules from './pages/UserSchedules.js'
-
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import { PersistGate } from 'redux-persist/integration/react'
 
 class App extends Component {
@@ -22,7 +22,7 @@ componentDidMount() {
   
   fetchCompanies()(store.dispatch)
   fetchServices()(store.dispatch)
-  
+  fetchAllSchedules()(store.dispatch)
 
 }
 
