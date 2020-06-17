@@ -17,7 +17,7 @@ Geocode.setRegion("us");
 Geocode.enableDebug();
  
 // class LatLng extends Component{
-const LatLng = ({companies})=>{
+const LatLng = ({companies,selectedState})=>{
 
   const [address,setAddress] = useState([])
 
@@ -31,7 +31,7 @@ const LatLng = ({companies})=>{
             const { lat, lng } = response.results[0].geometry.location;
           
             setAddress(prevState=>{
-              return [...prevState, {lat:lat, lng:lng, id:comp.id,name:comp.name}]
+              return [...prevState, {lat:lat, lng:lng, id:comp.id}]
           })
       
           },
@@ -46,12 +46,34 @@ const LatLng = ({companies})=>{
     // when the [] update, run getLatLng
    useEffect(getLatLng, [companies] )
 
- 
+    const choseState=()=>{
+        
+      let choice = {}
+
+        // if(selectedState==="All"){
+        //   choice = {"lat":47.603230,"lng":-122.330276, "zoom":7}
+        //   // choice.zoom= 7
+        //   // choice.lat= 47.603230,
+        //   // choice.lng= -122.330276
+        // }
+        //  if(selectedState === "WA"){
+        //   choice = {"lat":47.603230,"lng":-122.330276, "zoom":11}
+        // }else if(selectedState==="OR"){
+        //   choice = {"lat":45.5051,"lng":-122.6750, "zoom":11}
+        // }
+        // else{
+          choice = {"lat":46.603230,"lng":-121.330276, "zoom":7.2}
+        // }
+
+        return choice
+
+    }
+
     return (
       <div>
         {/* can not put setState in render */}
         {/* {this.getLatLng()} */}
-        <GoogleMaps address={address} />
+        <GoogleMaps address={address} companies={companies} mapCenter ={choseState()} />
       </div>
     )
 }
@@ -59,7 +81,8 @@ const LatLng = ({companies})=>{
 
 const mapStateToProps = (state) => {
   return {
-    companies: state.company.data
+    companies: state.company.data,
+    selectedState: state.company.choseState
   }
 }
 export default connect(mapStateToProps)(LatLng);

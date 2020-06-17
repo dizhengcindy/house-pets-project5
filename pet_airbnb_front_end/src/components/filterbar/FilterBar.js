@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import {filterCompanies} from '../../redux'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import Nav from 'react-bootstrap/Nav'
 
 class FilterBar extends Component{
 
@@ -11,42 +13,47 @@ class FilterBar extends Component{
     populateStates=()=>{
         let states={}
         this.props.companies.map((comp)=> states[comp.state]=0)
-        return Object.keys(states).map((state,index)=> <option key={index}>{state}</option>)   
+        return Object.keys(states).map((state,index)=>
+        <NavDropdown.Item eventKey={state} key = {index}>{state}</NavDropdown.Item>
+        )   
     }
 
-    populateServices=()=>this.props.services.map((service,index)=> <option key={index}>{service.service_type}</option>) 
+    populateServices=()=>this.props.services.map((service,index)=> <NavDropdown.Item eventKey={service.service_type} key = {index}>{service.service_type}</NavDropdown.Item>)
     
-    handelChangeState=event=>{
-        // console.log(event.target.value)
+    // <option key={index}>{service.service_type}</option>) 
+    
+    handelChangeState=eventKey=>{
         this.setState({
-            state:event.target.value
+            state:eventKey
         }, ()=>{this.props.changeState(this.state)})
     
     }
-    handelChangeService=event=>{
+    handelChangeService=eventKey=>{
         this.setState({
-            service:event.target.value
+            service:eventKey
         },()=>{this.props.changeState(this.state)})
     
     }
     
     render(){
         return(
-            <div>
-                <div className="State">
-                Location: <select id="state" onChange={this.handelChangeState}>
-                    <option>All</option>
-                    {this.populateStates()}
-                </select>
-                </div>
-
-                <div className="Service">
-                Service: <select id="service" onChange={this.handelChangeService}>
-                    <option>All</option>
-                    {this.populateServices()}
-                </select>
-                </div>
-            </div>
+            <>
+                 {/* <Nav justify variant="tabs" activeKey="1" className="row"> */}
+       
+                    
+                <NavDropdown title={"State: "+this.state.state} id="nav-dropdown" onSelect={this.handelChangeState}>
+                <NavDropdown.Item eventKey={"All"} key = "55">All</NavDropdown.Item>
+                {this.populateStates()}
+                    </NavDropdown>
+          
+                        
+                <NavDropdown title={"Service: "+this.state.service} id="nav-dropdown" onSelect={this.handelChangeService}>
+                <NavDropdown.Item eventKey={"All"} key = "56">All</NavDropdown.Item>
+                {this.populateServices()}
+                    </NavDropdown>
+               
+          
+            </>
         )
     }
 }

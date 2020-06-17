@@ -7,6 +7,7 @@
 
   const initialState = {
     data:[],
+    choseState:"",
     display:[],
     loading: false,
   };
@@ -41,7 +42,8 @@
         }
         return{
           ...state,
-          display:showComps
+          display:showComps,
+          choseState:action.payload.state
 
         }
       default:

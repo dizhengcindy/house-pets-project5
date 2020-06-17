@@ -16,7 +16,7 @@ class CompanyList extends Component {
 
 render(){
   return (
-    <div>
+    <div className="CompanyList">
       {this.companies()}
     </div>
   );

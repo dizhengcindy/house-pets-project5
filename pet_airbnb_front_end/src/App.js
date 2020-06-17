@@ -13,14 +13,13 @@ import CompanyShowPage from './pages/CompanyShowPage'
 import NavBar from './components/NavBar.js'
 import UserProfile from './pages/UserProfile.js'
 import UserSchedules from './pages/UserSchedules.js'
-// import { persistStore, persistReducer } from 'redux-persist'
-// import storage from 'redux-persist/lib/storage'
+
 import { PersistGate } from 'redux-persist/integration/react'
 
 class App extends Component {
 
 componentDidMount() {
-  fetchAllSchedules()(store.dispatch)
+  
   fetchCompanies()(store.dispatch)
   fetchServices()(store.dispatch)
   

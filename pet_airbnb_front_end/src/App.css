@@ -1,36 +1,19 @@
-/* .App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
- */
- 
+ .CompanyList{
+  height: auto;
+  padding: 20px;
+  /* margin-left: 230px; */
+  margin-left: 1000px;
+ padding-bottom: 30px;
+ overflow: auto; 
+z-index: 100;
+ }
  .CompanyCard {
-   border: 1px solid grey; 
+   border: 1px solid rgb(224, 224, 224); 
   /* padding: 20px 40px 40px; */
-  max-width: 650px;
+  max-width: 1000px;
   display: flex;
-  margin-left: 5px;
+  margin-left: 0px;
   
 }
 .CompanyCard .image img{
@@ -46,13 +29,25 @@
   margin-bottom: 5px; */
 
 }
+.App{
+  padding: 16px;
+  margin-top: 30px;
+  min-height: 1500px;
+}
+.mapContainer{
+   margin-top: 12px;
+   margin-left: 0px;
+}
 .CompanyCard .TextContent {
   margin-top: 15px;
   flex: 1 1 auto;
 }
-.Map {
-margin-left: 700px;
-}
+/* .Map {
+margin-left: 940px;
+} */
+/* .mapContainer{
+  position:sticky
+} */
 .CompanyShowPage .image img{
   width: 400px;
   height: 400px;
@@ -82,4 +77,12 @@ input[type="radio"]{
 .star{
   cursor: pointer;
   transition: color 200ms;
+}
+
+.CompanyInfoBox .image img{
+  width: 200px;
+  height: 150px;
+  /* margin-right: 20px;
+  margin-left: 5px;
+  margin-top: 5px; */
 }
