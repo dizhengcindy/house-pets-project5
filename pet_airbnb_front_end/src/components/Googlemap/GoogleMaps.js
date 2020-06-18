@@ -26,22 +26,23 @@ export class MapContainer extends Component {
       })
     }
   };
-//   onMarkerClick=()=>{
-// // console.log("Hi, there")
-//     return <Link to={`/companies/${this.state.activeMarker.id}`} ></Link>
-//   }
+
  
   populateMarkers=()=>this.props.address.map((set,index)=>
+  // console.log("Hi, I am marker", set.id,set.lng,set.lat)
     <Marker 
       key={index}
         id = {set.id} //company id
         // onMouseover={this.onMouseoverMarker}
         onClick={this.onMarkerClick}
-        position={{lat: set.lat,lng:set.lng}} />)
+        position={{lat: set.lat,lng:set.lng}} />
+        
+        )
 
 
 
   render() {
+    console.log(this.props)
     return (
         <div className="mapContainer"
          style={{width: '50%', height: '94%',position:'fixed'}}>
@@ -50,14 +51,14 @@ export class MapContainer extends Component {
       google={this.props.google} 
       style={{width: '100%', height: '100%'}}
       onClick={this.onMapClicked}
-      initialCenter={{
+      center={{
         lat: this.props.mapCenter.lat,
         lng: this.props.mapCenter.lng
       }}
       zoom={this.props.mapCenter.zoom}>
        
           {this.populateMarkers()}
-
+{console.log("Hi I am in google map return",this.props.address.length)}
           
           <InfoWindow
         visible={this.state.showingInfoWindow}

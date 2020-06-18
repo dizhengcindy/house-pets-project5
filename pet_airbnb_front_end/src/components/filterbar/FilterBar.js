@@ -7,8 +7,8 @@ import Nav from 'react-bootstrap/Nav'
 class FilterBar extends Component{
 
     state={
-        state:"All",
-        service:"All"
+        state:this.props.choseState,
+        service:this.props.choseService
     }
     populateStates=()=>{
         let states={}
@@ -60,7 +60,9 @@ class FilterBar extends Component{
 const mapStateToProps = (state) => {
     return{
       companies:state.company.data,
-      services:state.service.data
+      services:state.service.data,
+      choseState:state.company.choseState,
+      choseService:state.company.choseService,
     }
   }
 const mapDispatchToProps = dispatch=>{

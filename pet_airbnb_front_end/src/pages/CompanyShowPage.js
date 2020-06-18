@@ -6,6 +6,9 @@ import ScheduleForm from '../components/schedule/ScheduleForm.js'
 import {FaStar} from 'react-icons/fa'
 import Card from "react-bootstrap/Card"
 import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
+import MiniLogin from '../components/company/MiniLogin'
+import{updateAllSchedulesComment} from '../redux'
 
   const CompanyShowPage =(props)=> {
 
@@ -26,7 +29,7 @@ import Container from 'react-bootstrap/Container'
   
        return compSchedules.map((schedule,index)=>{
         if(schedule.comment||schedule.rating){
-            return <CommentCard key={index} schedule={schedule}/>
+            return <CommentCard key={index} schedule={schedule} updateAllSchedulesComment={props.updateAllSchedulesComment}/>
         }
 
       })
@@ -34,22 +37,30 @@ import Container from 'react-bootstrap/Container'
 
     const getEachSerRating = (id)=>{
         let serCstHash = {}
+ 
+       let compSches =  props.allSchedules.filter(sch=>
+     
+         sch.companyservice.company_id == props.match.params.id)
 
-       let compSches =  props.allSchedules.filter(sch=>sch.companyservice.company_id == props.match.params.id)
+        
+
+
+
        compSches.map(sch=>{
       
-        let k = "id" + sch.companyservice.id
+        let k = sch.companyservice.id
 
-           if(!serCstHash[k]){
-            serCstHash[k]=[sch.rating]
-        }else{
-            serCstHash[k].push(sch.rating)
-        }
-             
+            if(sch.rating){
+                if(!serCstHash[k]){
+                    serCstHash[k]=[sch.rating]
+                }else{
+                    serCstHash[k].push(sch.rating)
+                }
+            }
         })
 
        for( let k in serCstHash){
-           if(k.slice(2)==id){
+           if(k==id){
             return serCstHash[k].reduce((a,b)=>a+b,0)/serCstHash[k].length + "("+ serCstHash[k].length +")"
            }
        }
@@ -120,7 +131,22 @@ const listOfServices=()=>services.map((ser,index)=><li key = {index}>{ser.servic
                     </Card.Body>
                 </Card>
                 </div> 
-                 :""
+                 :
+                 <div className="AskToLogIn">
+                      <Card
+                    bg='light'
+                    text='dark' 
+                    style={{ width: '18rem' }}
+                     >
+                    <Card.Header>Log in to schedule a service</Card.Header>
+                    <Card.Body>
+
+                    <MiniLogin props={props}/>
+                           
+                    </Card.Body>
+                </Card>
+              
+                 </div>
                  }
                  
                 <div className="Comments">
@@ -141,5 +167,9 @@ const mapStateToProps = (state) => {
       allSchedules: state.allSchedules.data
     }
   }
+  const mapDispatchToProps = dispatch=>{
+    return{
+        updateAllSchedulesComment: (data)=>dispatch(updateAllSchedulesComment(data))
+    }}
 
-  export default connect(mapStateToProps)(CompanyShowPage);
+  export default connect(mapStateToProps,mapDispatchToProps)(CompanyShowPage);

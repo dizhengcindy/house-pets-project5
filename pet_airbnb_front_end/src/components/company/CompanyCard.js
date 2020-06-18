@@ -1,46 +1,44 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { connect } from 'react-redux'
 import {FaStar} from 'react-icons/fa'
+import {getAvgRating} from '../../redux'
 
 const CompanyCard=(props)=>{
 
-    const getEachSerRating = (id)=>{
-        let serCstHash = {}
+
+   
+    const [count,setCount] = useState(0)
+    const [avg,setAvg] = useState(0)
+
+   useEffect ( ()=>{
+       let total = 0
+       let num = 0
 
        let compSches =  props.allSchedules.filter(sch=>sch.companyservice.company_id == props.company.id)
-       compSches.map(sch=>{
-      
-        let k = "id" + sch.companyservice.id
-
-           if(!serCstHash[k]){
-            serCstHash[k]=[sch.rating]
-        }else{
-            serCstHash[k].push(sch.rating)
-        }
-             
-        })
-
-       for( let k in serCstHash){
-           if(k.slice(2)==id){
-            return serCstHash[k].reduce((a,b)=>a+b,0)/serCstHash[k].length + "("+ serCstHash[k].length +")"
-           }
-       }
        
-    }
+       compSches.map(sch=>{
+        if(sch.rating){
+            total += sch.rating
+            num+=1
+        }
+        })
+       
+        if(num!==0){
+            props.getAvgRating({company_id:props.company.id, avg:total/num, count:num})
+            setCount(num)
+            setAvg(total/num)
+        }
+    })
+
    const populateServices=(services)=>services.map((service,index)=>
-        <li key={index}>
+        <li key={index} className={service.service==props.choseService?"Dark":"Light"}>
             {service.service} ${service.charge}
-            {getEachSerRating(service.companyservices_id)?
-            <>
-             <FaStar color={"#ffc107"}/> 
-             {getEachSerRating(service.companyservices_id)}
-             </>
-             
-             :""}
+           
         </li>
    )
+
     const {id,company_name,address_line,city,state,country,zip,picture1,picture2,picture3,services}= props.company
     return (
         <div className="CompanyCard">
@@ -52,9 +50,13 @@ const CompanyCard=(props)=>{
                 <Link to={`/companies/${id}` }>
 
                    
-                        <strong>{company_name}</strong>
+                        <strong>{company_name+"  "}</strong>
                   
                     </Link>
+
+                    {/* {getAverageRating()} */}
+                        {count!==0?
+                        <><FaStar color={"#ffc107"}/> {avg}({count} )</>:""}
                       </div>
                     <div className="address">
                        Address: {address_line+", " + city+ ", "+state+" "+ zip}
@@ -70,7 +72,14 @@ const CompanyCard=(props)=>{
 }
 const mapStateToProps = (state) => {
     return{
-      allSchedules: state.allSchedules.data
+      allSchedules: state.allSchedules.data,
+      choseService: state.company.choseService
     }
   }
-export default connect(mapStateToProps)(CompanyCard)
+
+  const mapDispatchToProps = dispatch=>{
+      return{
+        getAvgRating: (data)=>dispatch(getAvgRating(data))
+      }
+  }
+export default connect(mapStateToProps,mapDispatchToProps)(CompanyCard)

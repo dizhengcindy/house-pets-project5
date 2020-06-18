@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import ReactDOMServer from 'react-dom/server'
+import {FaStar} from 'react-icons/fa'
 
  const CompanyInfoBox=({companies, compId})=> {
  
@@ -25,6 +26,10 @@ import ReactDOMServer from 'react-dom/server'
             <div>
            <a href={`http://localhost:3001/companies/${compId}`}> {company_name}</a>
           </div>
+          {findComp().avgRating?
+          <><FaStar color={"#ffc107"}/> {findComp().avgRating}({findComp().numOfComments} )</>
+        :""}
+          
           </div>
     )
 }

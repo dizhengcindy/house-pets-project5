@@ -2,6 +2,7 @@ import {
     FETCH_ALLSCHEDULES_REQUEST,
     FETCH_ALLSCHEDULES_SUCCESS,
     FETCH_ALLSCHEDULES_FAILURE,
+    UPDATE_ALLSCHEDULES_COMMENT,
   } from "./allSchedulesTypes";
   
   const SCHEDULEBASEURL = "http://localhost:3000/schedules"
@@ -26,7 +27,12 @@ import {
     };
   };
   
-  
+  export const updateAllSchedulesComment = (updateInfo) => {
+    return {
+      type: UPDATE_ALLSCHEDULES_COMMENT,
+      payload: updateInfo,
+    };
+  };
 
   export const fetchAllSchedules = () => {
     return (dispatch) => {

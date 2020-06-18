@@ -3,7 +3,7 @@ import{
     FETCH_COMPANIES_SUCCESS,
     FETCH_COMPANIES_FAILURE,
     FILTER_COMPANIES,
-
+    GET_AVG_RATING,
   } from "./companyTypes";
   
   const BASEURL = "http://localhost:3000/companies"
@@ -15,7 +15,12 @@ import{
       payload: obj,
     };
   };
-
+  export const getAvgRating = (avgRating) => {
+    return {
+      type: GET_AVG_RATING,
+      payload: avgRating,
+    };
+  };
   export const fetchCompanySuccess = (companies) => {
     return {
       type: FETCH_COMPANIES_SUCCESS,

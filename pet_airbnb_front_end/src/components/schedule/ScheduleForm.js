@@ -5,14 +5,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import { postSchedule } from '../../redux';
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
-import { useAlert } from 'react-alert'
+// import { useAlert } from 'react-alert'
 import Button from  'react-bootstrap/Button'
 import Card from "react-bootstrap/Card"
 import InputGroup from 'react-bootstrap/InputGroup'
+import Alert from 'react-bootstrap/Alert'
+import {AiOutlineClose} from 'react-icons/ai'
 
  const ScheduleForm=(props)=>{
-
-    const alert = useAlert()
+    const [show, setShow] = useState(false)
+    // const alert = useAlert()
     const [selectedService,setSelectedService] = useState("")
     const [charge,setCharge] = useState(0)
     const [companyserviceId, setCompanyserviceId]=useState()
@@ -32,6 +34,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
        setSelectedService(service)
        setCharge(charge)
        setCompanyserviceId(id)
+
     }
 const updateTotalCharge=()=>{
     if(selectedService === "Walk dog"){
@@ -59,8 +62,8 @@ const handleClick=()=>{
         totalCost: totalCharge
     })
     
-   
-    alert.success('You reserved the service successfully!')
+    setShow(true)
+    // alert.success('You reserved the service successfully!')
 
     
     }
@@ -107,8 +110,24 @@ const handleClick=()=>{
                 {totalCharge}
                 </div>
                 <br/>
-                <Button disabled={reserveBtn} onClick={handleClick}>Reserve service</Button>
-               
+                <Button variant="outline-info" disabled={reserveBtn} onClick={handleClick}>Reserve service</Button>
+                <>
+      <Alert show={show} variant="success">
+        <Alert.Heading> You reserved the service successfully!</Alert.Heading>
+        <p>
+         
+          Looking forward to meet your pets!
+        </p>
+        <hr />
+        <div className="d-flex justify-content-end">
+          <Button onClick={() => setShow(false)} variant="outline-success">
+          <AiOutlineClose/>
+          </Button>
+        </div>
+      </Alert>
+
+      
+    </>
         </div>
     )
 }

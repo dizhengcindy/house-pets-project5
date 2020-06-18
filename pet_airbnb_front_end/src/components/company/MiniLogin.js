@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 // import { Button, Container } from "react-bootstrap";
 import { connect } from "react-redux";
-import { authUser } from "../redux";
+import { authUser } from "../../redux";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Container from "react-bootstrap/Container";
 
 const INITIAL_STATE ={
     
@@ -13,26 +12,25 @@ const INITIAL_STATE ={
     
 }
 
-class Login extends Component {
+class MiniLogin extends Component {
     state = INITIAL_STATE;
 
     handleSubmit = (event) => {
       event.preventDefault();
       this.props.onAddUser(this.state);
       this.setState(INITIAL_STATE);
-      this.props.history.push('/')
+    //   this.props.history.push('/')
     };
   
     handleChange = (event) => {
+
       this.setState({
         [event.target.name]: event.target.value,
       });
     };
     render() {
         return (
-          <Container>
-            <div className="Login">
-    
+            <div className="MiniLogin">
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Username</Form.Label>
@@ -53,16 +51,14 @@ class Login extends Component {
                     <Button variant="outline-info" type="submit">
                         Log in
                     </Button>
-                    
-                    <Button variant="outline-info" onClick={() => this.props.history.push("/signup")}>
+                    <Button variant="outline-info" onClick={() => this.props.props.history.push("/signup")}>
                         Sign up
                 </Button>
                 </Form>
 
                 
               
-            </div>
-            </Container>
+            </div> 
         )
     }
 }
@@ -75,4 +71,4 @@ const mapDispatchToProps = dispatch => {
       // };
     };
   };
-export default connect(null,mapDispatchToProps)(Login)
+export default connect(null,mapDispatchToProps)(MiniLogin)

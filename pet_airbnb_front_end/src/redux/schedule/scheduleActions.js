@@ -116,6 +116,7 @@ import {
               dispatch(fetchScheduleFailure(schedule.error));
             } else {
               dispatch(updateScheduleSuccess(schedule));//different
+              
             }
           });
       };}

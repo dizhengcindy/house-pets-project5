@@ -8,6 +8,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { MdPets } from 'react-icons/md'
 import {RiUserHeartLine} from 'react-icons/ri'
 import Container from 'react-bootstrap/Container'
+
 class NavBar extends Component{
 
     signOut = () => {
@@ -16,7 +17,8 @@ class NavBar extends Component{
     }
    
     render(){
-        let welcome = `Welcome, ${this.props.user.username} `
+
+         let welcome = this.props.user ? `Welcome, ${this.props.user.username} `: "Welcome" 
         return(
             
             // <div className="navbar">
@@ -28,7 +30,7 @@ class NavBar extends Component{
                 <Nav.Item >
                 {/* <NavLink to="/" exact>Home</NavLink> */}
                     <Nav.Link eventKey="1" href="http://localhost:3001/">
-                    <MdPets size="25"/>  Pets Home
+                    <MdPets size="25"/>  House Pets
                     </Nav.Link>
                 </Nav.Item>
                 <FilterBar/>
@@ -41,7 +43,7 @@ class NavBar extends Component{
                 
                 <NavDropdown className="col-auto" key ='left' title= {welcome}  id="nav-dropdown" >
                     <NavDropdown.Item eventKey="4.1" href="http://localhost:3001/user/profile">Profile</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="4.2" href="http://localhost:3001/schedules">Schedules</NavDropdown.Item>
+                <NavDropdown.Item eventKey="4.2" href="http://localhost:3001/schedules">Schedules {this.props.userSchedules.length}</NavDropdown.Item>
                     {/* <NavDropdown.Item eventKey="4.3">Saved stores</NavDropdown.Item> */}
                     <NavDropdown.Divider />
                     <NavDropdown.Item eventKey="4.4" href="http://localhost:3001/" onClick={this.signOut}>Log out</NavDropdown.Item>
@@ -52,7 +54,7 @@ class NavBar extends Component{
                 :
                 <Nav.Item>
                     <Nav.Link eventKey="4.5" href="http://localhost:3001/login">
-                    <MdPets />  Log in
+                    Log in / Sign up
                     </Nav.Link>
                 </Nav.Item>}
          
@@ -68,7 +70,8 @@ class NavBar extends Component{
 }
 const mapStateToProps = state=>{
     return{
-        user:state.user.data.user
+        user:state.user.data.user,
+        userSchedules: state.schedule.data
     }
 }
 const mapDispatchToProps=dispatch=>{

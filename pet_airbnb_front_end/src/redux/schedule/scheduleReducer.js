@@ -27,7 +27,7 @@ import {
           loading: true,
         };
       case FETCH_SCHEDULES_SUCCESS:
-      
+        
         return {
           ...state,
           loading: false,

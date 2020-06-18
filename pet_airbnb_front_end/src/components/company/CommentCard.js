@@ -4,13 +4,13 @@ import {FaStar} from 'react-icons/fa'
 import {RiDeleteBinLine} from 'react-icons/ri'
 import{updateSchedule} from '../../redux'
 
-const CommentCard=({schedule,services,currentUser, deleteComment})=>{
+const CommentCard=({schedule,services,currentUser, deleteComment,updateAllSchedulesComment})=>{
    const [enter,setEnter] = useState(false)
     const findService=()=>services.find(ser=>ser.id===schedule.companyservice.service_id)
 
     const handleDeleteComment=()=>{
-      console.log("Clicked")
       deleteComment(schedule.id, {comment:null,rating: null})
+       updateAllSchedulesComment({id:schedule.id,comment:null,rating: null})
     }
 
     
@@ -29,6 +29,8 @@ const CommentCard=({schedule,services,currentUser, deleteComment})=>{
             {schedule.comment ?
             schedule.comment :""}
 
+            {currentUser? 
+            <>
             {
               currentUser.id ===schedule.user.id?
               <div className="RiDeleteBinLine">
@@ -37,6 +39,12 @@ const CommentCard=({schedule,services,currentUser, deleteComment})=>{
                
                :""
             }
+            </>
+            :
+
+            "" 
+            }
+           <br/>  <br/>
         </div>
     )
 }
@@ -48,7 +56,8 @@ const mapStateToProps = (state) => {
   }
   const mapDispatchToProps = dispatch=>{
     return{
-        deleteComment: (id,data)=>updateSchedule(id,data)(dispatch)
+        deleteComment: (id,data)=>updateSchedule(id,data)(dispatch),
+        // updateAllSchedulesComment: (data)=>dispatch(updateAllSchedulesComment(data))
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(CommentCard)
