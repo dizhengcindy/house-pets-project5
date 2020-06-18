@@ -15,6 +15,7 @@ import UserProfile from './pages/UserProfile.js'
 import UserSchedules from './pages/UserSchedules.js'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { PersistGate } from 'redux-persist/integration/react'
+import Sort from './components/company/Sort'
 
 class App extends Component {
 
@@ -33,6 +34,7 @@ componentDidMount() {
           <PersistGate loading={null} persistor={persistor}>
          <Router>
          <NavBar/>
+       
        <div className="App">
         <Route exact path ="/" component={Home}/>
         <Route exact path ="/user/profile" component={UserProfile}/>

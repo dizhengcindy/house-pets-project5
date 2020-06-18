@@ -4,6 +4,7 @@
     FETCH_COMPANIES_SUCCESS,
     FILTER_COMPANIES,
     GET_AVG_RATING,
+    SORT_COMPANIES,
   } from "./companyTypes";
 
   const initialState = {
@@ -64,6 +65,13 @@
             ...state,
             data: [...state.data.filter(cmp=>cmp.id!==action.payload.company_id),comp]
           };
+        case SORT_COMPANIES:
+
+          // let ratingRank = state.display.sort((a, b) => (a.avgRating > b.avgRating) ? 1 : (a.avgRating === b.avgRating) ? ((a.size > b.size) ? 1 : -1) : -1 ).reverse()
+          return{
+            ...state,
+            display:action.payload
+          }
       default:
         return state;
     }

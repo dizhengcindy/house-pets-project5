@@ -9,25 +9,28 @@ import {FaStar} from 'react-icons/fa'
 
     const {id,company_name,address_line,city,state,country,zip,picture1,picture2,picture3,services} = findComp()
   
-    const renderMarkerContent=()=> {
-        return ReactDOMServer.renderToString(<Link to={`/companies/${compId}` }>
+    // const renderMarkerContent=()=> {
+    //     return ReactDOMServer.renderToString(<Link to={`/companies/${compId}` }>
                 
-    <p>{company_name}</p>
+    // <p>{company_name}</p>
        
-      </Link>)
-    }
+    //   </Link>)
+    // }
   
+    const handleClick=()=>{
+      console.log("Clicked!!!!!!!")
+    }
    
     return (
         <div className="CompanyInfoBox">
-            <div className="image">
+            <div className="image" onClick={handleClick}>
         <img src={picture1}/>
             </div>
             <div>
-           <a href={`http://localhost:3001/companies/${compId}`}> {company_name}</a>
+          <strong><a href={`http://localhost:3001/companies/${compId}`}> {company_name}</a></strong> 
           </div>
           {findComp().avgRating?
-          <><FaStar color={"#ffc107"}/> {findComp().avgRating}({findComp().numOfComments} )</>
+          <><FaStar color={"#ffc107"}/> {Math.round(findComp().avgRating*100)/100}({findComp().numOfComments} )</>
         :""}
           
           </div>

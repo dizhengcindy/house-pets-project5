@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import CompanyCard from './CompanyCard'
 import { connect } from 'react-redux'
-
+import Sort from './Sort'
 class CompanyList extends Component {
+
 
   companies=()=>
    
@@ -12,11 +13,13 @@ class CompanyList extends Component {
       
       });
 
+
  
 
 render(){
   return (
     <div className="CompanyList">
+      {/* <Sort/> */}
       {this.companies()}
     </div>
   );

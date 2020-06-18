@@ -9,6 +9,7 @@ import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import MiniLogin from '../components/company/MiniLogin'
 import{updateAllSchedulesComment} from '../redux'
+import Image from 'react-bootstrap/Image'
 
   const CompanyShowPage =(props)=> {
 
@@ -39,11 +40,7 @@ import{updateAllSchedulesComment} from '../redux'
         let serCstHash = {}
  
        let compSches =  props.allSchedules.filter(sch=>
-     
          sch.companyservice.company_id == props.match.params.id)
-
-        
-
 
 
        compSches.map(sch=>{
@@ -61,12 +58,14 @@ import{updateAllSchedulesComment} from '../redux'
 
        for( let k in serCstHash){
            if(k==id){
-            return serCstHash[k].reduce((a,b)=>a+b,0)/serCstHash[k].length + "("+ serCstHash[k].length +")"
+            
+            let ratingRounded = serCstHash[k].reduce((a,b)=>a+b,0)/serCstHash[k].length
+            ratingRounded= Math.round(ratingRounded*100)/100
+            return ratingRounded + "("+ serCstHash[k].length +")"
            }
        }
        
     }
-
    
         //   if(getCompany()==null){
         //   return <h1>loading...</h1>
@@ -99,14 +98,18 @@ const listOfServices=()=>services.map((ser,index)=><li key = {index}>{ser.servic
                  <div className="image">
                  <div className="row">
                      <div className="column">
-                     <img src= {picture1}/>
+                    
+                     <Image src={picture1}  rounded />
                      </div>
                      <div className="column">
-                     <img src= {picture2}/></div>
+                     <Image src={picture2}  rounded />
+                     </div>
                      <div className="column">
-                     <img src= {picture3}/></div>
+                     <Image src={picture3}  rounded />
+                     </div>
                      </div>
                  </div>
+                 <br/>
                  <div className = "Services">
                     <strong>Services:</strong> 
                     <ul>

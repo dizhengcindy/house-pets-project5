@@ -4,11 +4,16 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { connect } from 'react-redux'
 import {FaStar} from 'react-icons/fa'
 import {getAvgRating} from '../../redux'
+import Image from 'react-bootstrap/Image'
+import {GrFormNext,GrFormPrevious} from 'react-icons/gr'
 
 const CompanyCard=(props)=>{
 
-
+    const {id,company_name,address_line,city,state,country,zip,picture1,picture2,picture3,services}= props.company
    
+    const [pics,setPics] = useState([picture2,picture3,picture1])
+    const [showPic, setShowPic] = useState(picture1)
+
     const [count,setCount] = useState(0)
     const [avg,setAvg] = useState(0)
 
@@ -28,7 +33,8 @@ const CompanyCard=(props)=>{
         if(num!==0){
             props.getAvgRating({company_id:props.company.id, avg:total/num, count:num})
             setCount(num)
-            setAvg(total/num)
+            let roundedAvg = Math.round(total/num*100)/100
+            setAvg(roundedAvg)
         }
     })
 
@@ -39,19 +45,42 @@ const CompanyCard=(props)=>{
         </li>
    )
 
-    const {id,company_name,address_line,city,state,country,zip,picture1,picture2,picture3,services}= props.company
+  
+   const previous=()=>{
+    setShowPic(...pics.slice(0,1))
+    let newPics = [...pics.slice(1),...pics.slice(0,1)]
+     setPics(newPics)
+   }
+
+   const next=()=>{
+    setShowPic(...pics.slice(1,2))
+    let newPics = [...pics.slice(2),...pics.slice(0,2)]
+     setPics(newPics)
+   }
+   
     return (
         <div className="CompanyCard">
-            <div className="image">
-            <img src={picture1} />
+            <div className="Previous">
+            <GrFormPrevious onClick={previous}/>
             </div>
+            <div className="image" >
+
+            <Image src={showPic}  rounded />
+
+            <GrFormNext onClick={next}/>
+   
+            {/* <img src={picture1} /> */}
+            </div>
+
+
+
             <div className="TextContent">
             <div className="name">
                 <Link to={`/companies/${id}` }>
 
-                   
+                   <div style={{color:"#2676c9"}}>
                         <strong>{company_name+"  "}</strong>
-                  
+                        </div>
                     </Link>
 
                     {/* {getAverageRating()} */}

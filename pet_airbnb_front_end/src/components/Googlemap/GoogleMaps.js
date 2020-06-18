@@ -56,7 +56,9 @@ export class MapContainer extends Component {
         lng: this.props.mapCenter.lng
       }}
       zoom={this.props.mapCenter.zoom}>
-       
+
+     
+
           {this.populateMarkers()}
 {console.log("Hi I am in google map return",this.props.address.length)}
           

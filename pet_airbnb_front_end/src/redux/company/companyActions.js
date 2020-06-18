@@ -4,6 +4,7 @@ import{
     FETCH_COMPANIES_FAILURE,
     FILTER_COMPANIES,
     GET_AVG_RATING,
+    SORT_COMPANIES,
   } from "./companyTypes";
   
   const BASEURL = "http://localhost:3000/companies"
@@ -13,6 +14,12 @@ import{
     return {
       type: FILTER_COMPANIES,
       payload: obj,
+    };
+  };
+  export const sortCompanies = (arr)=> {
+    return {
+      type: SORT_COMPANIES,
+      payload: arr,
     };
   };
   export const getAvgRating = (avgRating) => {

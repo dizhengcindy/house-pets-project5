@@ -2,7 +2,7 @@
  .CompanyList{
   height: auto;
   padding: 20px;
-  /* margin-left: 230px; */
+  /* margin-left: 20px; */
   /* margin-left: 950px; */
   float: right;
  padding-bottom: 30px;
@@ -14,9 +14,14 @@
    border: 1px solid rgb(224, 224, 224); 
   /* padding: 20px 40px 40px; */
   max-width: 1100px;
+  height: 370px;
   display: flex;
   margin-left: 0px;
-  
+  /* margin-top: 5px;
+  margin-bottom: 5px; */
+}
+.Previous{
+  margin-top: 150px;
 }
 
 .ScheduleForm{
@@ -28,15 +33,15 @@
 }
 .CompanyCard .image img{
   /* margin: 20px 30px 0 0; */
-  width: 300px;
+  width: 400px;
   height: 300px;
   margin-right: 20px;
   margin-left: 5px;
-  margin-top: 5px;
+  margin-top: 15px;
   /* object-fit: contain; */
   /* align-self: flex-start; */
-  /* margin-top: 20px;
-  margin-bottom: 5px; */
+  /* margin-top: 20px;*/
+  margin-bottom: 5px; 
 
 }
 .App{
@@ -63,7 +68,7 @@
 .CompanyShowPage .image img{
   width: 100%;
   /* 400px; */
-  height: 400px;
+  height: 300px
   /* margin-right: 20px;
   margin-left: 5px;
   margin-top: 5px; */
@@ -71,11 +76,7 @@
 .AskToLogIn{
   float: right;
 }
-.CommentCard .Service{
-  color:
-   /* lightskyblue */
-  cornflowerblue
-}
+
 
 * {
   box-sizing: border-box;
@@ -132,6 +133,10 @@ input[type="radio"]{
 .address{
   font-size: 14px;
 }
-.CompanyCard .TextContent .name{
-  
-}
+/* .CompanyCard .TextContent .name{
+  color:burlywood
+} */
+.Sort{
+  /* margin-top: 50px;
+  float: right;*/
+} 
