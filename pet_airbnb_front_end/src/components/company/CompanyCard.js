@@ -36,6 +36,8 @@ const CompanyCard=(props)=>{
             let roundedAvg = Math.round(total/num*100)/100
             setAvg(roundedAvg)
         }
+
+        
     })
 
    const populateServices=(services)=>services.map((service,index)=>
@@ -60,14 +62,14 @@ const CompanyCard=(props)=>{
    
     return (
         <div className="CompanyCard">
-            <div className="Previous">
+            {/* <div className="Previous">
             <GrFormPrevious onClick={previous}/>
-            </div>
+            </div> */}
             <div className="image" >
 
-            <Image src={showPic}  rounded />
+            <Image src={picture1}  rounded />
 
-            <GrFormNext onClick={next}/>
+            {/* <GrFormNext onClick={next}/> */}
    
             {/* <img src={picture1} /> */}
             </div>
