@@ -13,8 +13,9 @@ const CommentCard=({schedule,services,currentUser, deleteComment,updateAllSchedu
        updateAllSchedulesComment({id:schedule.id,comment:null,rating: null})
     }
 
-    
+ 
     return (
+      
         <div className="CommentCard">
         <div>
            <strong>{schedule.user.username}</strong>
@@ -25,7 +26,7 @@ const CommentCard=({schedule,services,currentUser, deleteComment,updateAllSchedu
            {schedule.rating ?
             <div>{[...Array(5)].map((star, i) =><FaStar key={i} className="star" color = {i< schedule.rating?"#ffc107":"#e4e5e9"} /> )}
             </div>:""}
-            
+            {console.log(schedule.comment)}
             {schedule.comment ?
             schedule.comment :""}
 

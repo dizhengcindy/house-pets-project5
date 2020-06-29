@@ -35,7 +35,7 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
         updateSchedule(schedule.id,
             {comment:comment,
             rating: rating})
-            updateAllSchedulesComment({id:schedule.id,comment:event.target.comment.value, rating: rating})
+            updateAllSchedulesComment({id:schedule.id,comment:comment, rating: rating})
         setSubmitComment(true)
     
     }
@@ -133,7 +133,7 @@ return (
                             <Form.Control 
                             type="comment" 
                             name="comment"  
-                            value={comment} 
+                            // value={comment} 
                             placeholder="Enter comment"  
                             onChange={handleChange} />
                         </Form.Group>
