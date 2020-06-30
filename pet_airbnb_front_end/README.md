@@ -1,6 +1,6 @@
 # Read me
 ## User Stories:
-## Before login/signup:
+#### Before login/signup:
 - user can choose state and service to see matching markers on the map and list of stores
 - user can see each store details by clicking on store name on google map mark or on the store card on right side.
 
