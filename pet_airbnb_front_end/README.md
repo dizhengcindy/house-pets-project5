@@ -15,12 +15,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - user can delete their comments
 
 
-# Tech highlights:
+# Tech highlights and sources:
 - I used Redux for state management.
 - I used redux-persist to prevent reset data when reload page
 - I used this library for google map: https://www.npmjs.com/package/google-maps-react
 - I also used react-geocode to convert address to latitute and longitute
 - I used this for datepicker: https://www.npmjs.com/package/react-datepicker
+- I used bootstrap for styling
 
 
 
