@@ -2,8 +2,8 @@
 <!-- npm install react-bootstrap bootstrap -->
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Read me
-# User Stories:
+# Read me
+## User Stories:
 - Before login/signup:
 - user can choose state and service to see matching markers on the map and list of stores
 - user can see each store details by clicking on store name on google map mark or on the store card on right side.
@@ -15,7 +15,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - user can delete their comments
 
 
-# Tech highlights and sources:
+## Tech highlights and sources:
 - I used Redux for state management.
 - I used redux-persist to prevent reset data when reload page
 - I used this library for google map: https://www.npmjs.com/package/google-maps-react
