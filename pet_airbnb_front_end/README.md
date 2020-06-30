@@ -1,7 +1,3 @@
-<!-- npm i react-moment -->
-<!-- npm install react-bootstrap bootstrap -->
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 # Read me
 ## User Stories:
 - Before login/signup:
