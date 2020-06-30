@@ -4,7 +4,7 @@
 - user can choose state and service to see matching markers on the map and list of stores
 - user can see each store details by clicking on store name on google map mark or on the store card on right side.
 
-## After login/signup 
+#### After login/signup 
 - user can update their profile info
 - user can schedule a service
 - user can review schedule history
