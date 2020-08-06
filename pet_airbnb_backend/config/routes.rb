@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :schedules, only: [:index,:create,:destory,:update]
   resources :companyservices, only: [:index]
   resources :companies, only: [:index, :show]
-  resources :services
+  resources :services, only: [:index]
   resources :users
   
   get '/schedules/userSchedules/:user_id', to: 'schedules#userSchedules'
