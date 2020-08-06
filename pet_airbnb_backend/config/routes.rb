@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :schedules
-  resources :companyservices
+  resources :schedules, only: [:index,:create,:destory,:update]
+  resources :companyservices, only: [:index]
   resources :companies
   resources :services
   resources :users
