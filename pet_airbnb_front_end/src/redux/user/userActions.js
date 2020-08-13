@@ -108,6 +108,7 @@ import { fetchSchedules } from "../index";
         })
           .then((res) => res.json())
           .then((user) => {
+            // debugger
             if (user.error) {
               dispatch(fetchUserFailure(user.error));
             } else {
@@ -116,6 +117,7 @@ import { fetchSchedules } from "../index";
               dispatch(fetchSchedules(user.user.id))
               );//different
             }
+
           });
       };
   };
