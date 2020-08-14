@@ -1,6 +1,7 @@
 import {
     FETCH_USERS_REQUEST,
     FETCH_USERS_SUCCESS,
+    FETCH_USERS_FAILURE,
     POST_USER,
     AUTH_USER,
     UPDATE_USER,
@@ -42,12 +43,19 @@ import {
           ...state,
           loading: true,
         };
+
+      case FETCH_USERS_FAILURE:
+        return {
+          ...state,
+          error:action.error
+        }
       case FETCH_USERS_SUCCESS:
         // console.log("FETCH_USERS_SUCCESS")
         return {
           ...state,
           loading: false,
           data: action.payload,
+          error: ""
         };
     
       default:

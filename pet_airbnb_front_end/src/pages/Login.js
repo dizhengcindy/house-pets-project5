@@ -18,9 +18,11 @@ class Login extends Component {
 
     handleSubmit = (event) => {
       event.preventDefault();
-      this.props.onAddUser(this.state);
-      this.setState(INITIAL_STATE);
-      this.props.history.push('/')
+      if(this.state.username!==""&&this.state.password!==""){
+        this.props.onAddUser(this.state);
+        this.setState(INITIAL_STATE)
+        this.props.history.push('/')
+    }
     };
   
     handleChange = (event) => {
@@ -75,4 +77,11 @@ const mapDispatchToProps = dispatch => {
       // };
     };
   };
-export default connect(null,mapDispatchToProps)(Login)
+
+  const mapStateToProps = (state) => {
+    return{
+      user:state.user.data.user
+    }
+  }
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login)
