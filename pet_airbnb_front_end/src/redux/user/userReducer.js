@@ -55,7 +55,7 @@ import {
           ...state,
           loading: false,
           data: action.payload,
-          error: ""
+          error: null
         };
     
       default:

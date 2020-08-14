@@ -18,13 +18,20 @@ class Login extends Component {
 
     handleSubmit = (event) => {
       event.preventDefault();
-      if(this.state.username!==""&&this.state.password!==""){
         this.props.onAddUser(this.state);
         this.setState(INITIAL_STATE)
         this.props.history.push('/')
-    }
     };
   
+    renderAlert(){
+      if(this.props.error!==null){
+        return(
+        <div>
+          <strong>{this.props.error}</strong>
+        </div>
+        )
+      }
+    }
     handleChange = (event) => {
       this.setState({
         [event.target.name]: event.target.value,
@@ -60,6 +67,7 @@ class Login extends Component {
                         Sign up
                 </Button>
                 </Form>
+                {this.renderAlert()}
 
                 
               
@@ -80,7 +88,7 @@ const mapDispatchToProps = dispatch => {
 
   const mapStateToProps = (state) => {
     return{
-      user:state.user.data.user
+      error:state.user.error
     }
   }
 
