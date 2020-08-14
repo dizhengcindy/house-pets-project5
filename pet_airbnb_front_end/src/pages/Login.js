@@ -20,16 +20,19 @@ class Login extends Component {
       event.preventDefault();
         this.props.onAddUser(this.state);
         this.setState(INITIAL_STATE)
-        this.props.history.push('/')
+       
     };
   
     renderAlert(){
-      if(this.props.error!==null){
+      if(this.props.error){
         return(
         <div>
           <strong>{this.props.error}</strong>
         </div>
         )
+       }
+      else if(this.props.error===null){
+        this.props.history.push('/')
       }
     }
     handleChange = (event) => {
@@ -37,6 +40,7 @@ class Login extends Component {
         [event.target.name]: event.target.value,
       });
     };
+
     render() {
         return (
           <Container>

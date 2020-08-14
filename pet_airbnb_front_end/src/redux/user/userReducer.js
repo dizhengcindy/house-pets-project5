@@ -12,17 +12,19 @@ import {
     data: [],
     //  userId:localStorage.getItem("user_id"),
     loading: false,
+    // error:null
   };
   
   const userReducer = (state = initialState, action) => {
     switch (action.type) {
-      case POST_USER:
-        return {
-          ...state,
-          loading: false,
-          data:  action.payload,
+      // case POST_USER:
+      //   return {
+      //     ...state,
+      //     loading: false,
+      //     data:  action.payload,
+          
 
-        };
+      //   };
         case UPDATE_USER:
           return {
             ...state,
@@ -30,18 +32,20 @@ import {
             data:  action.payload,
   
           };
-        case AUTH_USER:
-          // console.log("POST_USER")
-          return {
-            ...state,
-            loading: false,
-            data: action.payload,
-          };
+        // case AUTH_USER:
+        //   // console.log("POST_USER")
+        //   return {
+        //     ...state,
+        //     loading: false,
+        //     data: action.payload,
+        //     error:""
+        //   };
       case FETCH_USERS_REQUEST:
         // console.log("FETCH_USERS_REQUEST")
         return {
           ...state,
           loading: true,
+         
         };
 
       case FETCH_USERS_FAILURE:
@@ -52,7 +56,7 @@ import {
       case FETCH_USERS_SUCCESS:
         // console.log("FETCH_USERS_SUCCESS")
         return {
-          ...state,
+         ...state,
           loading: false,
           data: action.payload,
           error: null

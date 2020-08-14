@@ -12,12 +12,12 @@ import { fetchSchedules } from "../index";
   
   const USERBASEURL = "http://localhost:3000/api/v1/users"
   const AUTHURL = "http://localhost:3000/api/v1/login"
-  export const fetchUserSuccess = (users) => {
-    return {
-      type: FETCH_USERS_SUCCESS,
-      payload: users,
-    };
-  };
+  // export const fetchUserSuccess = (users) => {
+  //   return {
+  //     type: FETCH_USERS_SUCCESS,
+  //     payload: users,
+  //   };
+  // };
   
   export const fetchUserFailure = (error) => {
     return {
@@ -32,9 +32,9 @@ import { fetchSchedules } from "../index";
     };
   }; 
 
-  export const postUserSuccess = (newUser) => {
+  export const fetchUserSuccess = (newUser) => {
     return {
-      type: POST_USER,
+      type: FETCH_USERS_SUCCESS,
       payload: newUser,
     };
   };
@@ -82,7 +82,7 @@ import { fetchSchedules } from "../index";
           if (user.error) {
             dispatch(fetchUserFailure(user.error));
           } else {
-            dispatch(postUserSuccess(user),
+            dispatch(fetchUserSuccess(user),
            
             );//different
           }
@@ -113,7 +113,7 @@ import { fetchSchedules } from "../index";
               dispatch(fetchUserFailure(user.error));
             } else {
               // debugger
-              dispatch(postUserSuccess(user),
+              dispatch(fetchUserSuccess(user),
               dispatch(fetchSchedules(user.user.id))
               );//different
             }
