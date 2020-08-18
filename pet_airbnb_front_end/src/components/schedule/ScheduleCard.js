@@ -15,6 +15,7 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
     const [submitComment, setSubmitComment] = useState(false)
  
     const [comment,setComment] = useState(null)
+    const [pics,setPics] = useState(null)
 
     const [rating, setRating] = useState(null)
     const [hover, setHover] = useState(null)
@@ -28,6 +29,9 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
 
     const handleChange=event=>{
         setComment(event.target.value)
+    }
+    const handleChangePics=event=>{
+        setPics(event.target.value)
     }
 
     const handleSubmitComment=event=>{
@@ -136,6 +140,15 @@ return (
                             // value={comment} 
                             placeholder="Enter comment"  
                             onChange={handleChange} />
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicText">
+                            <Form.Control 
+                            type="pictures" 
+                            name="pictures"  
+                            // value={comment} 
+                            // placeholder="Enter comment"  
+                            onChange={handleChangePics} />
                         </Form.Group>
 
                         <Button variant="outline-info" name="comment" type="submit">
