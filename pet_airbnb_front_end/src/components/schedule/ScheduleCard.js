@@ -15,7 +15,7 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
     const [submitComment, setSubmitComment] = useState(false)
  
     const [comment,setComment] = useState(null)
-    const [pics,setPics] = useState(null)
+    const [pics,setPics] = useState([])
 
     const [rating, setRating] = useState(null)
     const [hover, setHover] = useState(null)
@@ -34,6 +34,11 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
         setPics(event.target.value)
     }
 
+    const displayPics=pics=>{
+        if(pics.length!==0){
+
+        }
+    }
     const handleSubmitComment=event=>{
         event.preventDefault()
         updateSchedule(schedule.id,
@@ -144,13 +149,13 @@ return (
 
                         <Form.Group controlId="formBasicText">
                             <Form.Control 
-                            type="pictures" 
-                            name="pictures"  
+                            type="file" 
+                            name="file"  
                             // value={comment} 
-                            // placeholder="Enter comment"  
+                             placeholder="upload an image"  
                             onChange={handleChangePics} />
                         </Form.Group>
-
+                            {displayPics(pics)}
                         <Button variant="outline-info" name="comment" type="submit">
                             Submit
                         </Button>
