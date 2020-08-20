@@ -16,7 +16,7 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
  
     const [comment,setComment] = useState(null)
     const [pics,setPics] = useState([])
-    const [picPrev, setPicPrev] = useState(null)
+    const [picPrev, setPicPrev] = useState([])
 
     const [rating, setRating] = useState(null)
     const [hover, setHover] = useState(null)
@@ -32,22 +32,31 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
         setComment(event.target.value)
     }
     const handleChangePics=event=>{
+     
         let reader = new FileReader()
-        let pictures = event.target.files[0]
-
+        let pictures = [...pics,event.target.files[0]]
+    
         reader.onloadend=()=>{
             setPics(pictures)
-            setPicPrev(reader.result)
+            let picPre = [...picPrev,reader.result]
+            setPicPrev(picPre)
         }
-        reader.readAsDataURL(pictures)
+        reader.readAsDataURL(event.target.files[0])
     }
 
     const displayPics=picPrev=>{
+       
         if(picPrev){
              
             return(
+                <div className="prevPic">
+                    
+                   
+                    <img  src= {picPrev[0]}/>
+            
                 
-                <img src= {picPrev}/>
+                
+                </div>
             )
         }
     }
@@ -159,7 +168,7 @@ return (
                             onChange={handleChange} />
                         </Form.Group>
 
-                        <Form.Group controlId="formBasicText">
+                        <Form.Group controlId="formPic">
                             <Form.Control 
                             type="file" 
                             name="file"  
