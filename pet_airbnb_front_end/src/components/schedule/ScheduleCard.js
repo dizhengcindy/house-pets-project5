@@ -16,6 +16,7 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
  
     const [comment,setComment] = useState(null)
     const [pics,setPics] = useState([])
+    const [picPrev, setPicPrev] = useState(null)
 
     const [rating, setRating] = useState(null)
     const [hover, setHover] = useState(null)
@@ -27,16 +28,27 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
     const findCompany=()=>companies.find(comp=>comp.id===schedule.companyservice.company_id)
     const findService=()=>services.find(ser=>ser.id===schedule.companyservice.service_id)
 
-    const handleChange=event=>{
+    const handleChange=event=>{ 
         setComment(event.target.value)
     }
     const handleChangePics=event=>{
-        setPics(event.target.value)
+        let reader = new FileReader()
+        let pictures = event.target.files[0]
+
+        reader.onloadend=()=>{
+            setPics(pictures)
+            setPicPrev(reader.result)
+        }
+        reader.readAsDataURL(pictures)
     }
 
-    const displayPics=pics=>{
-        if(pics.length!==0){
-
+    const displayPics=picPrev=>{
+        if(picPrev){
+             
+            return(
+                
+                <img src= {picPrev}/>
+            )
         }
     }
     const handleSubmitComment=event=>{
@@ -155,7 +167,7 @@ return (
                              placeholder="upload an image"  
                             onChange={handleChangePics} />
                         </Form.Group>
-                            {displayPics(pics)}
+                            {displayPics(picPrev)}
                         <Button variant="outline-info" name="comment" type="submit">
                             Submit
                         </Button>
