@@ -50,12 +50,8 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
              
             return(
                 <div className="prevPic">
-                    
-                   
-                    <img  src= {picPrev[0]}/>
-            
-                
-                
+                     {/* <img  src= {picPrev}/> */}
+                     <p>{picPrev}</p>
                 </div>
             )
         }
@@ -176,7 +172,10 @@ return (
                              placeholder="upload an image"  
                             onChange={handleChangePics} />
                         </Form.Group>
-                            {displayPics(picPrev)}
+                            {
+                                picPrev.forEach((picPrev)=> displayPics(picPrev))
+                            }
+                            {/* {displayPics(picPrev)} */}
                         <Button variant="outline-info" name="comment" type="submit">
                             Submit
                         </Button>
