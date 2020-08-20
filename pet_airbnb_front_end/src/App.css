@@ -111,18 +111,37 @@ input[type="radio"]{
   margin-left: 5px;
   margin-top: 5px; */
 }
-.Schedule{
+
+.ScheduleContainer{
   border-bottom: 1px solid rgb(224, 224, 224);
+}
+.Schedule{
+ 
   display: flex;
 
 }
 .CommentOnSchedule{
-  /* display: flex; */
+   display: flex; 
+   flex-direction: column;
   size:20%;
   /* float: right; */
   
   margin-left: 50%;
   margin-top: 10px;
+}
+.prevAllPics {
+  display:flex;
+  margin: auto;
+}
+.prevPic{
+  width: 300px;
+  height: 300px;
+  border: grey 1px;
+}
+
+.prevPic img{
+  max-height: 300px;
+  max-width: 100%;
 }
 .Dark{
   color:black
@@ -140,12 +159,3 @@ input[type="radio"]{
   /* margin-top: 50px;
   float: right;*/
 } 
-.prevPic{
-  width: 300px;
-  border: grey 1px;
-}
-
-.prevPic img{
-  max-height: 100%;
-  max-width: 100%;
-}

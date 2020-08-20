@@ -33,28 +33,29 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
     }
     const handleChangePics=event=>{
      
-        let reader = new FileReader()
-        let pictures = [...pics,event.target.files[0]]
-    
-        reader.onloadend=()=>{
-            setPics(pictures)
-            let picPre = [...picPrev,reader.result]
-            setPicPrev(picPre)
+        if(picPrev.length<=3){
+            let reader = new FileReader()
+            let pictures = [...pics,event.target.files[0]]
+        
+            reader.onloadend=()=>{
+                setPics(pictures)
+                let picPre = [...picPrev,reader.result]
+                setPicPrev(picPre)
+            }
+            reader.readAsDataURL(event.target.files[0])
         }
-        reader.readAsDataURL(event.target.files[0])
     }
 
-    const displayPics=picPrev=>{
-       
-        if(picPrev){
-             
+    const displayPics=(picPrev,index)=>{
+    
             return(
-                <div className="prevPic">
-                     {/* <img  src= {picPrev}/> */}
-                     <p>{picPrev}</p>
+                <div className="prevPic" key={index}>
+                     <img  src= {picPrev}/>
+                   
+                   
                 </div>
             )
-        }
+        
     }
     const handleSubmitComment=event=>{
         event.preventDefault()
@@ -79,6 +80,7 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
         changeShow()
     }
 return (
+    <div className ="ScheduleContainer">
         <div className = "Schedule">
              
             <div className="Text">
@@ -96,7 +98,8 @@ return (
             <div>Number of pets:{schedule.num_of_pets} </div>
             <div>Total cost: $ {schedule.totalCost}</div>
             </div>
-        <div className="CommentOnSchedule">
+
+    <div className="CommentOnSchedule">
         <>
       <Alert show={show} variant="success">
         <Alert.Heading> You deleted the review successfully!</Alert.Heading>
@@ -163,7 +166,7 @@ return (
                             placeholder="Enter comment"  
                             onChange={handleChange} />
                         </Form.Group>
-
+                            {picPrev.length<3?
                         <Form.Group controlId="formPic">
                             <Form.Control 
                             type="file" 
@@ -172,19 +175,17 @@ return (
                              placeholder="upload an image"  
                             onChange={handleChangePics} />
                         </Form.Group>
-                            {
-                                picPrev.forEach((picPrev)=> displayPics(picPrev))
+                        :
+                        ""
                             }
-                            {/* {displayPics(picPrev)} */}
+                          
+                           
                         <Button variant="outline-info" name="comment" type="submit">
                             Submit
                         </Button>
                         </Form>
 
-                        {/* <form onSubmit={handleSubmitComment}>
-                        <input type="text" name="comment" />
-                        <input type="submit"/>
-                        </form> */}
+                      
 
                         </>}
                 </>
@@ -201,7 +202,16 @@ return (
                 <Button variant="outline-info" onClick={cancelSch}>Cancel</Button>
             </>}
             </div>
-          
+
+            
+        </div>
+        <div className="prevAllPics">
+                            {
+                              
+                                 picPrev.map((picPrev,index)=> displayPics(picPrev,index))
+                                
+                            }
+                            </div>
         </div>
     )
 }
