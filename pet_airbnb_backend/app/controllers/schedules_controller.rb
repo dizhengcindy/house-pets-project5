@@ -5,7 +5,7 @@ class SchedulesController < ApplicationController
     end
 
     def index
-        schedules = Schedule.all
+        schedules = Schedule.all.with_attached_pictures
         render json: schedules
     end
     
@@ -22,10 +22,12 @@ class SchedulesController < ApplicationController
 
     def update
         schedule = Schedule.find(params[:id])
+        byebug
         if schedule.update(schedule_params)
             
             render json: schedule
         else
+            byebug
             render json: {error: "failed to make a schedule"}
         end
     end
@@ -37,6 +39,7 @@ class SchedulesController < ApplicationController
 
     private
     def schedule_params
-        params.require(:schedule).permit(:user_id,:companyservice_id,:num_of_pets,:start_date,:start_time,:end_date, :end_time, :rating, :comment,:done,:totalCost,:pictures:[])
+        params.require(:schedule).permit(:user_id,:companyservice_id,:num_of_pets,
+        :start_date,:start_time,:end_date, :end_time, :rating, :comment,:done,:totalCost,pictures:[])
     end
 end

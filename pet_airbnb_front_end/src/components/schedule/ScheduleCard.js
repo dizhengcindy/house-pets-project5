@@ -44,6 +44,7 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
             }
             reader.readAsDataURL(event.target.files[0])
         }
+        
     }
 
     const displayPics=(picPrev,index)=>{
@@ -59,10 +60,13 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
     }
     const handleSubmitComment=event=>{
         event.preventDefault()
+        debugger
         updateSchedule(schedule.id,
             {comment:comment,
-            rating: rating})
-            updateAllSchedulesComment({id:schedule.id,comment:comment, rating: rating})
+            rating: rating,
+            pictures: pics})
+
+            updateAllSchedulesComment({id:schedule.id,comment:comment, rating: rating,pictures:picPrev})
         setSubmitComment(true)
     
     }
