@@ -19,7 +19,7 @@ class SchedulesController < ApplicationController
             render json: {error: "failed to make a schedule"}
         end
     end
-
+# update rating, comment and upload pictures
     def update
         schedule = Schedule.find(params[:id])
         byebug
@@ -32,7 +32,7 @@ class SchedulesController < ApplicationController
             render json: {error: "failed to make a schedule"}
         end
     end
-
+# cancel schedule:
     def destroy
         schedule = Schedule.find(params[:id])
         schedule.destroy
