@@ -23,7 +23,8 @@ class SchedulesController < ApplicationController
     def update
         schedule = Schedule.find(params[:id])
         byebug
-        if schedule.update(schedule_params)
+        if (schedule.update(rating: schedule_params[:rating], comment: schedule_params[:comment])
+            && schedule.pictures.attach(schedule_params[:pictures]))
             
             render json: schedule
         else
