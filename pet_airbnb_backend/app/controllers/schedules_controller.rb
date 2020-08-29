@@ -24,9 +24,10 @@ class SchedulesController < ApplicationController
 # update rating, comment and upload pictures
     def update
         schedule = Schedule.find(params[:id])
-        byebug
-        if UpdateScheduleService.new(schedule,schedule_params).call
-            
+        buybug
+  if schedule.update(schedule_params) && schedule.pictures.attach(params.require(:schedule)[:pictures])
+        # if UpdateScheduleService.new(schedule,schedule_params).call
+        buybug
             render json: schedule
         else
             
