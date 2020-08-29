@@ -98,17 +98,19 @@ import {
 
     export const updateSchedule = (id,updateInfo) => {
       console.log(updateInfo)
+debugger
       return (dispatch) => {
         dispatch(fetchScheduleRequest())
         fetch(`${SCHEDULEBASEURL}/${id}`, {
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-          },
-          body: JSON.stringify(
-            updateInfo
-          ),
+          //Active Storage won’t allow attachments to be sent with headers.
+          // To be accepted by the database, the headers must be removed. 
+          // headers: {
+          //   "Content-Type": "application/json",
+          //   Accept: "application/json"
+          // },
+          body: updateInfo
+          // JSON.stringify(updateInfo ),
         })
           .then((res) => res.json())
           .then((schedule) => {

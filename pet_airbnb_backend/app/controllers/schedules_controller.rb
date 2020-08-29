@@ -1,14 +1,16 @@
 class SchedulesController < ApplicationController
+#sending all schedules to the frontend
     def userSchedules
         schedules = Schedule.where("user_id=?", params[:user_id])
-        render json: schedules
+    
+        render json: schedules.with_attached_pictures
     end
-
+#sending this user's schedules to the frontend
     def index
         schedules = Schedule.all.with_attached_pictures
         render json: schedules
     end
-    
+#make new schedule
     def create
         schedule = Schedule.new(schedule_params)
   
@@ -23,12 +25,11 @@ class SchedulesController < ApplicationController
     def update
         schedule = Schedule.find(params[:id])
         byebug
-        if (schedule.update(rating: schedule_params[:rating], comment: schedule_params[:comment])
-            && schedule.pictures.attach(schedule_params[:pictures]))
+        if UpdateScheduleService.new(schedule,schedule_params).call
             
             render json: schedule
         else
-            byebug
+            
             render json: {error: "failed to make a schedule"}
         end
     end

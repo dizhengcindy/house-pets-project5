@@ -38,7 +38,9 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
             let pictures = [...pics,event.target.files[0]]
         
             reader.onloadend=()=>{
+                //photo file
                 setPics(pictures)
+                //photo url:
                 let picPre = [...picPrev,reader.result]
                 setPicPrev(picPre)
             }
@@ -52,19 +54,21 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
             return(
                 <div className="prevPic" key={index}>
                      <img  src= {picPrev}/>
-                   
-                   
                 </div>
             )
         
     }
     const handleSubmitComment=event=>{
         event.preventDefault()
-        debugger
+
+        const formData = new FormData()
+        formData.append('schedule[comment]', comment)
+        formData.append('schedule[rating]', rating)
+        formData.append('schedule[pictures]', pics)
+    
+    
         updateSchedule(schedule.id,
-            {comment:comment,
-            rating: rating,
-            pictures: pics})
+                   formData)
 
             updateAllSchedulesComment({id:schedule.id,comment:comment, rating: rating,pictures:picPrev})
         setSubmitComment(true)
