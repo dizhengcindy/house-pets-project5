@@ -34,6 +34,7 @@ class SchedulesController < ApplicationController
             render json: {error: "failed to make a schedule"}
         end
     end
+
 # cancel schedule:
     def destroy
         schedule = Schedule.find(params[:id])
@@ -43,6 +44,6 @@ class SchedulesController < ApplicationController
     private
     def schedule_params
         params.require(:schedule).permit(:user_id,:companyservice_id,:num_of_pets,
-        :start_date,:start_time,:end_date, :end_time, :rating, :comment,:done,:totalCost,pictures:[])
+        :start_date,:start_time,:end_date, :end_time, :rating, :comment,:done,:totalCost,:picture)
     end
 end
