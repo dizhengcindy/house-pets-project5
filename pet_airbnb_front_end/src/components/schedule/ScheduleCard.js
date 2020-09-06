@@ -35,13 +35,15 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
      
         if(picPrev.length<=3){
             let reader = new FileReader()
-            let pictures = [...pics,event.target.files[0]]
+            let pictures = event.target.files[0]
+            // [...pics,event.target.files[0]]
         
             reader.onloadend=()=>{
                 //photo file
                 setPics(pictures)
                 //photo url:
-                let picPre = [...picPrev,reader.result]
+                let picPre = reader.result
+                // [...picPrev,reader.result]
                 setPicPrev(picPre)
             }
             reader.readAsDataURL(event.target.files[0])
@@ -64,7 +66,7 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
         const formData = new FormData()
         formData.append('schedule[comment]', comment)
         formData.append('schedule[rating]', rating)
-        formData.append('schedule[pictures]', pics)
+        formData.append('schedule[pictures]', pics[0])
     
     
         updateSchedule(schedule.id,
