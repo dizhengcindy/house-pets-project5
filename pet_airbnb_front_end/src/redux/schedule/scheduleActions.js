@@ -133,5 +133,4 @@ import {
         //   // To be accepted by the database, the headers must be removed. 
   //   // headers: {
         //   //   "Content-Type": "application/json",
-        //   //   Accept: "application/json"
-        //   // },
+       
