@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {
     FETCH_SCHEDULES_REQUEST,
     FETCH_SCHEDULES_SUCCESS,
@@ -7,6 +8,8 @@ import {
     CANCEL_SCHEDULE,
   } from "./scheduleTypes";
   
+ 
+
   const SCHEDULEBASEURL = "http://localhost:3000/schedules"
 
   export const fetchScheduleSuccess = (schedules) => {
@@ -98,28 +101,30 @@ import {
 
     export const updateSchedule = (id,updateInfo) => {
       console.log(updateInfo)
-debugger
+// debugger
       return (dispatch) => {
         dispatch(fetchScheduleRequest())
-        fetch(`${SCHEDULEBASEURL}/${id}`, {
-          method: "PATCH",
-          //Active Storage won’t allow attachments to be sent with headers.
-          // To be accepted by the database, the headers must be removed. 
-          // headers: {
-          //   "Content-Type": "application/json",
-          //   Accept: "application/json"
-          // },
-          body: updateInfo
-          // JSON.stringify(updateInfo ),
+        
+        axios.patch(
+           `${SCHEDULEBASEURL}/${id}`,
+         updateInfo
+        
+        ) .then(function (response) {
+          debugger
+          console.log(response);
         })
-          .then((res) => res.json())
-          .then((schedule) => {
-            if (schedule.error) {
-              dispatch(fetchScheduleFailure(schedule.error));
-            } else {
-              dispatch(updateScheduleSuccess(schedule));//different
-              
-            }
-          });
-      };}
+        .catch(function (error) {
+          console.log(error);
+        });
+          // .then((res) => res.json())
+      //     .then((schedule) => {
+      //      
+      //       if (schedule.error) {
+      //         dispatch(fetchScheduleFailure(schedule.error));
+      //       } else {
+      //         dispatch(updateScheduleSuccess(schedule));//different
+      //         console.log("ABCDEFG")
+      //       }
+      //     });
+     };}
   

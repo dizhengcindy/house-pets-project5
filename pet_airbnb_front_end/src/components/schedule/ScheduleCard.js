@@ -7,6 +7,7 @@ import Button from  'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
 import {AiOutlineClose} from 'react-icons/ai'
+import axios from 'axios'
 
 const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,updateAllSchedulesComment,changeShow})=> {
     const [show, setShow] = useState(false)
@@ -35,14 +36,14 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
      
         if(picPrev.length<=3){
             let reader = new FileReader()
-            let pictures = event.target.files[0]
+            let pictures = [event.target.files[0]]
             // [...pics,event.target.files[0]]
         
             reader.onloadend=()=>{
                 //photo file
                 setPics(pictures)
                 //photo url:
-                let picPre = reader.result
+                let picPre = [reader.result]
                 // [...picPrev,reader.result]
                 setPicPrev(picPre)
             }
@@ -66,11 +67,15 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
         const formData = new FormData()
         formData.append('schedule[comment]', comment)
         formData.append('schedule[rating]', rating)
-        formData.append('schedule[pictures]', pics[0])
-    
-    
-        updateSchedule(schedule.id,
-                   formData)
+        formData.append('schedule[picture]', pics[0])
+    //     const SCHEDULEBASEURL = "http://localhost:3000/schedules"
+    //    let res = axios.patch(
+    //         `${SCHEDULEBASEURL}/${schedule.id}`,
+    //         formData
+         
+    //      )
+
+        updateSchedule(schedule.id, formData)
 
             updateAllSchedulesComment({id:schedule.id,comment:comment, rating: rating,pictures:picPrev})
         setSubmitComment(true)

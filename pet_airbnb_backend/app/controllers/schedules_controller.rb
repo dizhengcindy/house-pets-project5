@@ -3,11 +3,11 @@ class SchedulesController < ApplicationController
     def userSchedules
         schedules = Schedule.where("user_id=?", params[:user_id])
     
-        render json: schedules.with_attached_pictures
+        render json: schedules.with_attached_picture
     end
 #sending this user's schedules to the frontend
     def index
-        schedules = Schedule.all.with_attached_pictures
+        schedules = Schedule.all.with_attached_picture
         render json: schedules
     end
 #make new schedule
@@ -24,8 +24,9 @@ class SchedulesController < ApplicationController
 # update rating, comment and upload pictures
     def update
         schedule = Schedule.find(params[:id])
-        byebug
-  if schedule.update(schedule_params) && schedule.pictures.attach(params[:schedule][:pictures])
+        # byebug
+  if schedule.update(schedule_params)
+    # schedule.update(schedule_params) && schedule.pictures.attach(params[:schedule][:pictures])
         # if UpdateScheduleService.new(schedule,schedule_params).call
         byebug
             render json: schedule
