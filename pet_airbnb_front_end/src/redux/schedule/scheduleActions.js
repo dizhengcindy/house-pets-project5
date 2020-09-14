@@ -127,4 +127,15 @@ import {
       //       }
       //     });
      };}
- 
+ //  fetch(`${SCHEDULEBASEURL}/${id}`, {
+        //   method: "PATCH",
+        //   //Active Storage won’t allow attachments to be sent with headers.
+        //   // To be accepted by the database, the headers must be removed. 
+        //   // headers: {
+        //   //   "Content-Type": "application/json",
+        //   //   Accept: "application/json"
+        //   // },
+        //   body: updateInfo
+        //   // JSON.stringify(updateInfo ),
+        // })
+
