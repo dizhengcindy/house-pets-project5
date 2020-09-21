@@ -9,8 +9,7 @@ class UpdateScheduleService
         delete_pictures if @schedule.pictures.attached?
         @params.delete(:pictures)
       end
-  byebug
-      @schedule.update(@params)
+
     end
   
   
