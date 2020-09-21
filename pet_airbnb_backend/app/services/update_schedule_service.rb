@@ -4,10 +4,7 @@ class UpdateScheduleService
       @params = params
     end
   
-    def call
-    
-
-    end
+ 
   
   
  
