@@ -13,7 +13,6 @@ class UpdateScheduleService
       @schedule.update(@params)
     end
   
-    private
   
  
   
