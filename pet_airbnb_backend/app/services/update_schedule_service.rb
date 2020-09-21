@@ -15,9 +15,7 @@ class UpdateScheduleService
   
     private
   
-    def file?(param)
-      param.is_a?(ActionDispatch::Http::UploadedFile)
-    end
+ 
   
 
   end
