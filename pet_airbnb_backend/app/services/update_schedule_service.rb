@@ -5,10 +5,7 @@ class UpdateScheduleService
     end
   
     def call
-      if @params[:pictures] && !file?(@params[:pictures])
-        delete_pictures if @schedule.pictures.attached?
-        @params.delete(:pictures)
-      end
+    
 
     end
   
