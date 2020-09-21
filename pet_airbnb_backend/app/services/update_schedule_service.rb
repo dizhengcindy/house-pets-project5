@@ -19,7 +19,5 @@ class UpdateScheduleService
       param.is_a?(ActionDispatch::Http::UploadedFile)
     end
   
-    def delete_pictures
-      @schedule.pictures.purge
-    end
+
   end
