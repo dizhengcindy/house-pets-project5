@@ -1,5 +1,5 @@
 class UpdateScheduleService
-    def initialize(schedule, params)
+ 
   
     
   
