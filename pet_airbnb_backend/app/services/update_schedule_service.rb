@@ -3,11 +3,4 @@ class UpdateScheduleService
       @schedule = schedule
       @params = params
     end
-  
- 
-  
-  
- 
-  
-
   end
