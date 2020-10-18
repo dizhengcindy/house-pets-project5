@@ -5,10 +5,5 @@ class ScheduleSerializer < ActiveModel::Serializer
   :end_time, :rating, :comment, :done,:totalCost,:companyservice, :user, pictures:[]
 
 
-  def picture
-    return unless object.picture.attached?
-  
-    
-  end
 
 end
