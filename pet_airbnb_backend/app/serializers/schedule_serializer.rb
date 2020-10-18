@@ -13,8 +13,5 @@ class ScheduleSerializer < ActiveModel::Serializer
           .merge(url: picture_url)
           .tap { |attrs| attrs['name'] = attrs.delete('filename') }
   end
-  
-  def picture_url
-    url_for(object.picture)
-  end 
+
 end
