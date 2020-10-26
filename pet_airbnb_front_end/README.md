@@ -16,6 +16,9 @@
 - I used Redux for state management
 - I used redux-persist to prevent data reset when reload page
 - I used this library for google map: https://www.npmjs.com/package/google-maps-react
+- I also used react-geocode to convert address to latitute and longitute
+
+
 
 
 
