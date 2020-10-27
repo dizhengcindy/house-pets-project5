@@ -32,6 +32,7 @@ const rootReducer = (state, action) => {
         // storage.removeItem('persist:otherKey')
 
         // state = undefined;
+        //once log out, clear all other states, keep only the following ones
         const { company, service,allSchedules } = state;
 
     state = {  company,service,allSchedules};
