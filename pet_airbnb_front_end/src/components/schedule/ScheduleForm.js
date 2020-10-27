@@ -38,7 +38,7 @@ import {AiOutlineClose} from 'react-icons/ai'
     }
 const updateTotalCharge=()=>{
     if(selectedService === "Walk dog"){
-        let halfHrs = ((endDate.getHours() +endDate.getMinutes()/60)-(startDate.getHours() +startDate.getMinutes()/60))*2
+        let halfHrs = ((endDate.getDate()-startDate.getDate())*12+((endDate.getHours() +endDate.getMinutes()/60)-(startDate.getHours() +startDate.getMinutes()/60)))*2
         setTotalCharge( halfHrs * charge * numOfPets)
         }else{
             let days = (Math.floor((endDate.getTime() -startDate.getTime() )/ (1000 * 60 * 60 * 24)) + 1)
@@ -85,8 +85,8 @@ const handleClick=()=>{
                     onChange={date => setStartDate(date)}
                     selectsStart
                     showTimeSelect
-                    minTime={setHours(setMinutes(new Date(), 0), 7)}
-                    maxTime={setHours(setMinutes(new Date(), 30), 20)}
+                    minTime={setHours(setMinutes(new Date(), 0), 8)}
+                    maxTime={setHours(setMinutes(new Date(), 0), 20)}
                     dateFormat="MMMM d, yyyy h:mm aa"
                     startDate={startDate}
                     endDate={endDate}
@@ -97,8 +97,8 @@ const handleClick=()=>{
                     onChange={date => setEndDate(date)}
                     showTimeSelect
                     selectsEnd
-                    minTime={setHours(setMinutes(new Date(), 0), 7)}
-                    maxTime={setHours(setMinutes(new Date(), 30), 20)}
+                    minTime={setHours(setMinutes(new Date(), 0), 8)}
+                    maxTime={setHours(setMinutes(new Date(), 0), 20)}
                     dateFormat="MMMM d, yyyy h:mm aa"
                     startDate={startDate}
                     endDate={endDate}
