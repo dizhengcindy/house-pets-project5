@@ -3,11 +3,11 @@ class SchedulesController < ApplicationController
     def userSchedules
         schedules = Schedule.where("user_id=?", params[:user_id])
     
-        render json: schedules.with_attached_picture
+        render json: schedules
     end
 #sending this user's schedules to the frontend
     def index
-        schedules = Schedule.all.with_attached_picture
+        schedules = Schedule.all
         render json: schedules
     end
 #make new schedule
@@ -28,7 +28,7 @@ class SchedulesController < ApplicationController
   if schedule.update(schedule_params)
     # schedule.update(schedule_params) && schedule.pictures.attach(params[:schedule][:pictures])
         # if UpdateScheduleService.new(schedule,schedule_params).call
-        byebug
+      #  byebug
             render json: schedule
         else
             
@@ -45,6 +45,6 @@ class SchedulesController < ApplicationController
     private
     def schedule_params
         params.require(:schedule).permit(:user_id,:companyservice_id,:num_of_pets,
-        :start_date,:start_time,:end_date, :end_time, :rating, :comment,:done,:totalCost,pictures:[])
+        :start_date,:start_time,:end_date, :end_time, :rating, :comment,:done,:totalCost)
     end
 end

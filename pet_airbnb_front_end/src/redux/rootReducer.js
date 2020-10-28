@@ -33,9 +33,9 @@ const rootReducer = (state, action) => {
 
         // state = undefined;
         //once log out, clear all other states, keep only the following ones
-        const { company, service,allSchedules } = state;
+       // const { company, service,allSchedules } = state;
 
-    state = {  company,service,allSchedules};
+    state = {  };
     }
     
     return appReducer(state, action)
