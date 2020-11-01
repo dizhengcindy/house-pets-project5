@@ -36,7 +36,7 @@ const ScheduleCard=({schedule,services, companies,cancelSchedule,updateSchedule,
      
         if(picPrev.length<=3){
             let reader = new FileReader()
-            let pictures = [event.target.files]
+            let pictures = [...pics,event.target.files[0]]
             // [...pics,event.target.files[0]]
         
             reader.onloadend=()=>{
