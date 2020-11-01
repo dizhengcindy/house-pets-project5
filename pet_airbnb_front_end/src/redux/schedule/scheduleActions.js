@@ -105,37 +105,40 @@ import {
       return (dispatch) => {
         dispatch(fetchScheduleRequest())
         
-        axios.patch(
-           `${SCHEDULEBASEURL}/${id}`,
-         updateInfo
+        // axios.patch(
+        //    `${SCHEDULEBASEURL}/${id}`,
+        //  updateInfo
         
-        ) .then(function (response) {
-          debugger
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-          // .then((res) => res.json())
-      //     .then((schedule) => {
-      //      
-      //       if (schedule.error) {
-      //         dispatch(fetchScheduleFailure(schedule.error));
-      //       } else {
-      //         dispatch(updateScheduleSuccess(schedule));//different
-      //         console.log("ABCDEFG")
-      //       }
-      //     });
-     };}
- //  fetch(`${SCHEDULEBASEURL}/${id}`, {
-        //   method: "PATCH",
-        //   //Active Storage won’t allow attachments to be sent with headers.
-        //   // To be accepted by the database, the headers must be removed. 
-        //   // headers: {
-        //   //   "Content-Type": "application/json",
-        //   //   Accept: "application/json"
-        //   // },
-        //   body: updateInfo
-        //   // JSON.stringify(updateInfo ),
+        // ) .then(function (response) {
+        //   debugger
+        //   console.log(response);
         // })
+        // .catch(function (error) {
+        //   console.log(error);
+        // });
+
+
+  fetch(`${SCHEDULEBASEURL}/${id}`, {
+          method: "PATCH",
+          //Active Storage won’t allow attachments to be sent with headers.
+          // To be accepted by the database, the headers must be removed. 
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: //updateInfo
+           JSON.stringify(updateInfo ),
+        })
+          .then((res) => res.json())
+          .then((schedule) => {
+           
+            if (schedule.error) {
+              dispatch(fetchScheduleFailure(schedule.error));
+            } else {
+              dispatch(updateScheduleSuccess(schedule));//different
+              console.log("ABCDEFG")
+            }
+          });
+     };}
+
 
